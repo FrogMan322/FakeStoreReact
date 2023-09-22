@@ -1,0 +1,47 @@
+.wraper {
+  width: 500px;
+  min-height: 300px;
+  background-color: white;
+  border: 2px solid orange;
+  border-radius: 10px;
+}
+.product__card {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.product__data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.product__card img {
+  min-width: 250px;
+  height: 300px;
+  border-radius: 10px;
+  object-fit: contain;
+  border-right: 2px solid orange;
+}
+.description {
+  text-align: center;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-family: "Roboto";
+}
+.price {
+  text-align: center;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-family: "Roboto";
+}

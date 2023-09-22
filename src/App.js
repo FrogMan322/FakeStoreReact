@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import classes from "./App.module.css";
+import Nav from "./Nav/Nav";
+import ProductsContainer from "./Products/ProductsContainer";
+import Products from "./Products/Products";
+import React, { useState, useEffect } from "react";
 
 function App() {
+  const [curData, setCurData] = useState([]);
+  function fetchUserData() {
+    fetch("https://fakestoreapi.com/products")
+      .then((endpoint) => {
+        return endpoint.json();
+      })
+      .then((data) => {
+        setCurData(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={classes.container}>
+      <Nav />
+      <ProductsContainer>
+        {curData.map((obj, index) => {
+          return (
+            <Products
+              title={obj.title}
+              price={obj.price}
+              image={obj.image}
+              key={obj.id}
+            />
+          );
+        })}
+      </ProductsContainer>
     </div>
   );
 }
