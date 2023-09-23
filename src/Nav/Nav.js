@@ -8,7 +8,12 @@ function Nav(props) {
     <div className={classes.container}>
       <h1 className={classes["store__name"]}>Random Store</h1>
       <SearchBarFilter onSubmit={getValue} />
-      <div className={classes["cart"]}>
+      <div
+        onClick={() => {
+          props.onClose(true);
+        }}
+        className={classes["cart"]}
+      >
         <i className="bi bi-cart"></i>
         <p className={classes["cart__number"]}>0</p>
       </div>

@@ -3,8 +3,10 @@ import Nav from "./Nav/Nav";
 import ProductsContainer from "./Products/ProductsContainer";
 import Products from "./Products/Products";
 import React, { useState, useEffect } from "react";
+import Modal from "./Cart/Modal";
 
 function App() {
+  const [modalValue, setModalValue] = useState(false);
   const [filterValue, setFilterValue] = useState("");
   const [curData, setCurData] = useState([]);
   function fetchUserData() {
@@ -28,9 +30,10 @@ function App() {
 
   return (
     <div className={classes.container}>
-      <Nav onFilter={getFilterValue} />
+      {modalValue && <Modal onClose={setModalValue} />}
+      <Nav onFilter={getFilterValue} onClose={setModalValue} />
       <ProductsContainer>
-        {curData
+        {curData // eslint-disable-next-line
           .filter((obj, index) => {
             const value = filterValue.toLowerCase();
             if (value === "") {
