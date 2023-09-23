@@ -30,7 +30,7 @@ function App() {
     <div className={classes.container}>
       <Nav onFilter={getFilterValue} />
       <ProductsContainer>
-        {curData
+        {curData // eslint-disable-next-line
           .filter((obj, index) => {
             const value = filterValue.toLowerCase();
             if (value === "") {
