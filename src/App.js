@@ -5,6 +5,7 @@ import Products from "./Products/Products";
 import React, { useState, useEffect } from "react";
 
 function App() {
+  const [filterValue, setFilterValue] = useState("");
   const [curData, setCurData] = useState([]);
   function fetchUserData() {
     fetch("https://fakestoreapi.com/products")
@@ -21,21 +22,37 @@ function App() {
   useEffect(() => {
     fetchUserData();
   }, []);
+  function getFilterValue(value) {
+    setFilterValue(value);
+  }
 
   return (
     <div className={classes.container}>
-      <Nav />
+      <Nav onFilter={getFilterValue} />
       <ProductsContainer>
-        {curData.map((obj, index) => {
-          return (
-            <Products
-              title={obj.title}
-              price={obj.price}
-              image={obj.image}
-              key={obj.id}
-            />
-          );
-        })}
+        {curData
+          .filter((obj, index) => {
+            const value = filterValue.toLowerCase();
+            if (value === "") {
+              return obj;
+            } else if (
+              obj.title.toLowerCase().includes(value) ||
+              obj.category.toLowerCase().includes(value) ||
+              obj.description.toLowerCase().includes(value)
+            ) {
+              return obj;
+            }
+          })
+          .map((obj) => {
+            return (
+              <Products
+                title={obj.title}
+                price={obj.price}
+                image={obj.image}
+                key={obj.id}
+              />
+            );
+          })}
       </ProductsContainer>
     </div>
   );
