@@ -5,8 +5,10 @@ import Products from "./Products/Products";
 import React, { useState, useEffect } from "react";
 
 function App() {
+  // const [cartValue, setCartValue] = useState([]);
   const [filterValue, setFilterValue] = useState("");
   const [curData, setCurData] = useState([]);
+
   function fetchUserData() {
     fetch("https://fakestoreapi.com/products")
       .then((endpoint) => {
