@@ -4,10 +4,10 @@ import ProductsContainer from "./Products/ProductsContainer";
 import Products from "./Products/Products";
 import React, { useState, useEffect } from "react";
 import Modal from "./Cart/Modal";
-const cart = [];
+// const cart = [];
 function App() {
   // eslint-disable-next-line
-  const [cartValue, setCartValue] = useState(cart);
+  const [cartValue, setCartValue] = useState([]);
   // eslint-disable-next-line
   const [idValue, setIdValue] = useState("");
   const [modalValue, setModalValue] = useState(false);
@@ -38,17 +38,7 @@ function App() {
         return endpoint.json();
       })
       .then((data) => {
-        let value = 1;
-        const el = cartValue.find((el) => {
-          return el.id === id;
-        });
-        if (el === undefined) {
-          setCartValue((preValue) => {
-            return [...preValue, { ...data, quantity: value }];
-          });
-        } else {
-          el.quantity++;
-        }
+        // TODO ovde mora logica za updejtovanje korpe
       })
       .catch((err) => {
         console.log(err);

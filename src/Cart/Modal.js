@@ -17,7 +17,7 @@ function ModalOverlay(props) {
 function Cart(props) {
   return (
     <div className={classes["cart__container"]}>
-      <h1 className={classes["cart__info"]}>Cart</h1>
+      {/* <h1 className={classes["cart__info"]}>Cart</h1> */}
       {props.updateCart.map((obj, idx) => {
         return (
           <div key={idx} className={classes["product__container"]}>

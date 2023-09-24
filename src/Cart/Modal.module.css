@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+
 .modal__container {
   position: fixed;
   width: 100%;
@@ -8,41 +10,44 @@
   z-index: 100;
 }
 .cart__container {
-  border-radius: 20px;
+  overflow: scroll;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 600px;
   background-color: white;
   border: 1px solid orange;
   position: fixed;
-  top: 500px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 500px;
   /* min-height: 300px; */
   z-index: 150;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 15px;
 }
 .cart__info {
   font-size: 2rem;
 }
 .cart__wraper {
-  background-color: green;
   width: 100%;
   height: 200px;
 }
 .product__container {
+  font-family: "Roboto";
   width: 100%;
   height: 200px;
-  background-color: green;
+  border: 1px solid black;
+  border-radius: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .product__container img {
-  width: 200px;
-  height: 200px;
-  object-fit: fill;
+  border-radius: 20px;
+  width: 300px;
+  height: 100%;
+  object-fit: cover;
   object-position: 50% 50%;
 }
 .cart__data {
@@ -57,5 +62,4 @@
   text-align: center;
   width: 100%;
   height: 100px;
-  border: 1px solid red;
 }
