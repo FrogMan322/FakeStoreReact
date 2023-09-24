@@ -4,8 +4,12 @@ import ProductsContainer from "./Products/ProductsContainer";
 import Products from "./Products/Products";
 import React, { useState, useEffect } from "react";
 import Modal from "./Cart/Modal";
-
+const cart = [];
 function App() {
+  // eslint-disable-next-line
+  const [cartValue, setCartValue] = useState(cart);
+  // eslint-disable-next-line
+  const [idValue, setIdValue] = useState("");
   const [modalValue, setModalValue] = useState(false);
   const [filterValue, setFilterValue] = useState("");
   const [curData, setCurData] = useState([]);
@@ -25,7 +29,20 @@ function App() {
     fetchUserData();
   }, []);
   function getFilterValue(value) {
-    setFilterValue(value);
+    setFilterValue({ ...value, quantity: 1 });
+    setIdValue(value);
+  }
+  function addToCart(id) {
+    fetch(`https://fakestoreapi.com/products/${id}`)
+      .then((endpoint) => {
+        return endpoint.json();
+      })
+      .then((data) => {
+        setCartValue(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
@@ -49,10 +66,12 @@ function App() {
           .map((obj) => {
             return (
               <Products
+                onClick={addToCart}
                 title={obj.title}
                 price={obj.price}
                 image={obj.image}
                 key={obj.id}
+                id={obj.id}
               />
             );
           })}
