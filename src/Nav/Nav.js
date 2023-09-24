@@ -1,5 +1,6 @@
 import classes from "./Nav.module.css";
 import SearchBarFilter from "./SearchBarFilter";
+// import React, { useEffect, useState } from "react";
 function Nav(props) {
   function getValue(value) {
     props.onFilter(value);

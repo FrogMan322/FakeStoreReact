@@ -49,8 +49,6 @@ function App() {
         } else {
           el.quantity++;
         }
-
-        console.log(cartValue);
       })
       .catch((err) => {
         console.log(err);
@@ -60,7 +58,11 @@ function App() {
   return (
     <div className={classes.container}>
       {modalValue && <Modal onClose={setModalValue} cartData={cartValue} />}
-      <Nav onFilter={getFilterValue} onClose={setModalValue} />
+      <Nav
+        onFilter={getFilterValue}
+        onClose={setModalValue}
+        quantity={cartValue}
+      />
       <ProductsContainer>
         {curData // eslint-disable-next-line
           .filter((obj, index) => {
