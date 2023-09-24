@@ -15,18 +15,7 @@ function ModalOverlay(props) {
   );
 }
 function Cart(props) {
-  return (
-    <div className={classes["cart__container"]}>
-      <div className={classes["cart__wraper"]}></div>
-      <button
-        onClick={() => {
-          props.onClose(false);
-        }}
-      >
-        Close
-      </button>
-    </div>
-  );
+  return <div className={classes["cart__container"]}></div>;
 }
 function Modal(props) {
   return (
