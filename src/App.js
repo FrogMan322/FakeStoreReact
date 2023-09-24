@@ -38,7 +38,19 @@ function App() {
         return endpoint.json();
       })
       .then((data) => {
-        setCartValue(data);
+        let value = 1;
+        const el = cartValue.find((el) => {
+          return el.id === id;
+        });
+        if (el === undefined) {
+          setCartValue((preValue) => {
+            return [...preValue, { ...data, quantity: value }];
+          });
+        } else {
+          el.quantity++;
+        }
+
+        console.log(cartValue);
       })
       .catch((err) => {
         console.log(err);
@@ -47,7 +59,7 @@ function App() {
 
   return (
     <div className={classes.container}>
-      {modalValue && <Modal onClose={setModalValue} />}
+      {modalValue && <Modal onClose={setModalValue} cartData={cartValue} />}
       <Nav onFilter={getFilterValue} onClose={setModalValue} />
       <ProductsContainer>
         {curData // eslint-disable-next-line

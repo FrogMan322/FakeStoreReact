@@ -14,7 +14,9 @@
   min-height: 500px;
   background-color: red;
   z-index: 150;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+}
+.cart__wraper {
+  background-color: green;
+  width: 100%;
+  height: 200px;
 }

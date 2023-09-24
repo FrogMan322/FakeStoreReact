@@ -17,6 +17,7 @@ function ModalOverlay(props) {
 function Cart(props) {
   return (
     <div className={classes["cart__container"]}>
+      <div className={classes["cart__wraper"]}></div>
       <button
         onClick={() => {
           props.onClose(false);
@@ -35,7 +36,7 @@ function Modal(props) {
         document.getElementById("modal__overlay")
       )}
       {ReactDOM.createPortal(
-        <Cart onClose={props.onClose} />,
+        <Cart onClose={props.onClose} updateCart={props.cartData} />,
         document.getElementById("modal__cart")
       )}
     </Fragment>
