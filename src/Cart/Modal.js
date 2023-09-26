@@ -25,7 +25,13 @@ function Cart(props) {
             <div className={classes["cart__data"]}>
               <h1>Quantity:{obj.quantity}</h1>
               <h1>Price:{obj.price}</h1>
-              <button>Delete</button>
+              <button
+                onClick={() => {
+                  props.onDelete(obj.id);
+                }}
+              >
+                Delete
+              </button>
             </div>
           </div>
         );
@@ -52,7 +58,11 @@ function Modal(props) {
         document.getElementById("modal__overlay")
       )}
       {ReactDOM.createPortal(
-        <Cart onClose={props.onClose} updateCart={props.cartData} />,
+        <Cart
+          onDelete={props.onDeleteItem}
+          onClose={props.onClose}
+          updateCart={props.cartData}
+        />,
         document.getElementById("modal__cart")
       )}
     </Fragment>

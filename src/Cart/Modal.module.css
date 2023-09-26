@@ -10,20 +10,15 @@
   z-index: 100;
 }
 .cart__container {
-  overflow: scroll;
   top: 0;
   left: 0;
+  overflow: scroll;
   height: 100%;
-  width: 600px;
+  width: 500px;
   background-color: white;
   border: 1px solid orange;
   position: fixed;
-  /* min-height: 300px; */
   z-index: 150;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   gap: 15px;
 }
 .cart__info {
@@ -34,6 +29,7 @@
   height: 200px;
 }
 .product__container {
+  margin: 20px 0;
   font-family: "Roboto";
   width: 100%;
   height: 200px;
