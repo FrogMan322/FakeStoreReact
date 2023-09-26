@@ -16,7 +16,7 @@ function Nav(props) {
         className={classes["cart"]}
       >
         <i className="bi bi-cart"></i>
-        <p className={classes["cart__number"]}>0</p>
+        <p className={classes["cart__number"]}>{props.quantity.length}</p>
       </div>
     </div>
   );
