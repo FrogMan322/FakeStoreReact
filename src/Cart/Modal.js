@@ -26,6 +26,7 @@ function Cart(props) {
               <h1>Quantity:{obj.quantity}</h1>
               <h1>Price:{obj.price}</h1>
               <button
+                className={classes["delete__btn"]}
                 onClick={() => {
                   props.onDelete(obj.id);
                 }}

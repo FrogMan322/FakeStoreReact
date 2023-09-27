@@ -59,6 +59,7 @@ function App() {
     });
     setCartData([...item]);
   }
+
   return (
     <div className={classes.container}>
       {modalValue && (
@@ -68,11 +69,7 @@ function App() {
           onDeleteItem={deletingItemFromCart}
         />
       )}
-      <Nav
-        onFilter={getFilterValue}
-        onClose={setModalValue}
-        quantity={cartData}
-      />
+      <Nav onFilter={getFilterValue} onClose={setModalValue} cart={cartData} />
       <ProductsContainer>
         {curData // eslint-disable-next-line
           .filter((obj, index) => {
