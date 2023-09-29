@@ -11,21 +11,20 @@ function SearchBarFilter(props) {
   function inputValueHandler(e) {
     setValue(e.target.value);
   }
-
-  return (
-    <Fragment>
-      <form className={classes["form__style"]} onSubmit={onSubmitHandler}>
-        <input
-          onChange={inputValueHandler}
-          type="search"
-          name="search"
-          id="search"
-        />
-        <button type="submit" className={classes["submit__btn"]}>
-          Search
-        </button>
-      </form>
-    </Fragment>
+  const formData = (
+    <form className={classes["form__style"]} onSubmit={onSubmitHandler}>
+      <input
+        onChange={inputValueHandler}
+        type="search"
+        name="search"
+        id="search"
+      />
+      <button type="submit" className={classes["submit__btn"]}>
+        Search
+      </button>
+    </form>
   );
+
+  return <Fragment>{formData}</Fragment>;
 }
 export default SearchBarFilter;

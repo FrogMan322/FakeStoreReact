@@ -1,11 +1,11 @@
 import classes from "./Nav.module.css";
 import SearchBarFilter from "./SearchBarFilter";
 
-// import React, { useEffect, useState } from "react";
 function Nav(props) {
   function getValue(value) {
     props.onFilter(value);
   }
+
   return (
     <div className={classes.container}>
       <h1 className={classes["store__name"]}>Random Store</h1>
