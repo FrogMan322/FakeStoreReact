@@ -47,7 +47,6 @@ function App() {
           setCartData([...cartData, { ...data, quantity: 1 }]);
         }else {
             cartData[indexCart].quantity += 1;
-           
         }
       })
       .catch((err) => {
