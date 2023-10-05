@@ -45,8 +45,9 @@ function App() {
         const indexCart = cartData.findIndex((obj) => obj.id === id);
         if (!checkCart) {
           setCartData([...cartData, { ...data, quantity: 1 }]);
-        } else {
-          cartData[indexCart].quantity += 1;
+        }else {
+            cartData[indexCart].quantity += 1;
+           
         }
       })
       .catch((err) => {
