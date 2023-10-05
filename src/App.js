@@ -4,15 +4,16 @@ import ProductsContainer from "./Products/ProductsContainer";
 import Products from "./Products/Products";
 import React, { useState, useEffect } from "react";
 import Modal from "./Cart/Modal";
-// const cart = [];
+
 function App() {
   // eslint-disable-next-line
   const [idValue, setIdValue] = useState("");
   const [modalValue, setModalValue] = useState(false);
   const [filterValue, setFilterValue] = useState("");
-  // svi proizvodi renderovani na ekran
+
+  // svi proizvodi iz koji su renderovani na ekran
   const [curData, setCurData] = useState([]);
-  // Updating Cart Data
+  // Korpa i updejtovanje korpe
   const [cartData, setCartData] = useState([]);
   function fetchUserData() {
     fetch("https://fakestoreapi.com/products")
@@ -69,7 +70,7 @@ function App() {
           onDeleteItem={deletingItemFromCart}
         />
       )}
-      <Nav onFilter={getFilterValue} onClose={setModalValue} cart={cartData} />
+      <Nav onFilter={getFilterValue} onClose={setModalValue} />
       <ProductsContainer>
         {curData // eslint-disable-next-line
           .filter((obj, index) => {
