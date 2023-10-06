@@ -37,17 +37,6 @@ function Cart(props) {
           </div>
         );
       })}
-      {/* <div className={classes["product__container"]}>
-        <img
-          src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-          alt=""
-        />
-        <div className={classes["cart__data"]}>
-          <h1>Quantity:0</h1>
-          <h1>Price:0</h1>
-          <button>Delete</button>
-        </div>
-      </div> */}
     </div>
   );
 }

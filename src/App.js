@@ -2,19 +2,23 @@ import classes from "./App.module.css";
 import Nav from "./Nav/Nav";
 import ProductsContainer from "./Products/ProductsContainer";
 import Products from "./Products/Products";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import Modal from "./Cart/Modal";
-
+function reducerFunction(state, action) {
+  if (action.type === "ADD_TO_CART") {
+    // ? ZAVRSI PUNO BAGOVA
+  }
+}
 function App() {
+  const [cartState, setCartState] = useReducer(reducerFunction, []);
   // eslint-disable-next-line
   const [idValue, setIdValue] = useState("");
   const [modalValue, setModalValue] = useState(false);
   const [filterValue, setFilterValue] = useState("");
-
+  console.log(cartState);
   // svi proizvodi iz koji su renderovani na ekran
   const [curData, setCurData] = useState([]);
-  // Korpa i updejtovanje korpe
-  const [cartData, setCartData] = useState([]);
+
   function fetchUserData() {
     fetch("https://fakestoreapi.com/products")
       .then((endpoint) => {
@@ -41,35 +45,19 @@ function App() {
         return endpoint.json();
       })
       .then((data) => {
-        const checkCart = cartData.find((obj) => obj.id === id);
-        const indexCart = cartData.findIndex((obj) => obj.id === id);
-        if (!checkCart) {
-          setCartData([...cartData, { ...data, quantity: 1 }]);
-        }else {
-            cartData[indexCart].quantity += 1;
-        }
+        setCartState({
+          type: "ADD_TO_CART",
+          items: { ...data, quantity: 1 },
+        });
       })
       .catch((err) => {
         console.log(err);
       });
   }
-  // Deleting item from cart
-  function deletingItemFromCart(id) {
-    const item = cartData.filter((item) => {
-      return item.id !== id;
-    });
-    setCartData([...item]);
-  }
 
   return (
     <div className={classes.container}>
-      {modalValue && (
-        <Modal
-          onClose={setModalValue}
-          cartData={cartData}
-          onDeleteItem={deletingItemFromCart}
-        />
-      )}
+      {modalValue && <Modal onClose={setModalValue} cartData={cartState} />}
       <Nav onFilter={getFilterValue} onClose={setModalValue} />
       <ProductsContainer>
         {curData // eslint-disable-next-line
