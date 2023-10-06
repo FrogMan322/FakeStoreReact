@@ -4,11 +4,7 @@ import ProductsContainer from "./Products/ProductsContainer";
 import Products from "./Products/Products";
 import React, { useState, useEffect, useReducer } from "react";
 import Modal from "./Cart/Modal";
-function reducerFunction(state, action) {
-  if (action.type === "ADD_TO_CART") {
-    // ? ZAVRSI PUNO BAGOVA
-  }
-}
+function reducerFunction(state, action) {}
 function App() {
   const [cartState, setCartState] = useReducer(reducerFunction, []);
   // eslint-disable-next-line
