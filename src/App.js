@@ -14,17 +14,14 @@ function App() {
   // svi proizvodi iz koji su renderovani na ekran
   const [curData, setCurData] = useState([]);
 
-  const fetchUserData = useCallback(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((endpoint) => {
-        return endpoint.json();
-      })
-      .then((data) => {
-        setCurData(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const fetchUserData = useCallback(async () => {
+    try {
+      const endpoint = await fetch("https://fakestoreapi.com/products");
+      const data = await endpoint.json();
+      setCurData(data);
+    } catch (err) {
+      throw new Error(err);
+    }
   }, []);
   useEffect(() => {
     fetchUserData();
@@ -34,25 +31,22 @@ function App() {
     setFilterValue(value);
   }
   // Adding item from cart
-  function addToCart(id) {
-    const itemIndex = cartItem.findIndex((cartItem) => cartItem.id === id);
-    fetch(`https://fakestoreapi.com/products/${id}`)
-      .then((endpoint) => {
-        return endpoint.json();
-      })
-      .then((data) => {
-        if (itemIndex === -1) {
-          const updatedCart = [...cartItem, { ...data, quantity: 1 }];
-          setCartItem(updatedCart);
-        } else {
-          const updatedCart = [...cartItem];
-          updatedCart[itemIndex].quantity += 1;
-          setCartItem(updatedCart);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  async function addToCart(id) {
+    try {
+      const itemIndex = cartItem.findIndex((cartItem) => cartItem.id === id);
+      const endpoint = await fetch(`https://fakestoreapi.com/products/${id}`);
+      const data = await endpoint.json();
+      if (itemIndex === -1) {
+        const updatedCart = [...cartItem, { ...data, quantity: 1 }];
+        setCartItem(updatedCart);
+      } else {
+        const updatedCart = [...cartItem];
+        updatedCart[itemIndex].quantity += 1;
+        setCartItem(updatedCart);
+      }
+    } catch (err) {
+      throw new Error(err);
+    }
   }
   function deleteItem(id) {
     const updateCart = cartItem.filter((el) => {

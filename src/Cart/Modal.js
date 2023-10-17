@@ -15,8 +15,18 @@ function ModalOverlay(props) {
   );
 }
 function Cart(props) {
+  const totalSumPrice = props.updateCart.reduce((cv, acc) => {
+    return cv + acc.price;
+  }, 0);
+  const totalSumQuantity = props.updateCart.reduce((cv, acc) => {
+    return cv + acc.quantity;
+  }, 0);
+  const sumTotalPrice = totalSumPrice * totalSumQuantity;
   return (
     <div className={classes["cart__container"]}>
+      <h1 className={classes.total}>
+        Total Value: {`$${sumTotalPrice.toFixed(2)}`}
+      </h1>
       {/* <h1 className={classes["cart__info"]}>Cart</h1> */}
       {props.updateCart.map((obj, idx) => {
         return (
