@@ -26,7 +26,9 @@ function App() {
   useEffect(() => {
     fetchUserData();
   }, [fetchUserData]);
-
+  useEffect(() => {
+    localStorage.setItem("cartData", JSON.stringify(cartItem));
+  }, [cartItem]);
   function getFilterValue(value) {
     setFilterValue(value);
   }
@@ -60,8 +62,8 @@ function App() {
       {modalValue && (
         <Modal
           onClose={setModalValue}
-          cartData={cartItem}
           deleteItem={deleteItem}
+          cartData={cartItem}
         />
       )}
       <Nav
