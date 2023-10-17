@@ -2,21 +2,19 @@ import classes from "./App.module.css";
 import Nav from "./Nav/Nav";
 import ProductsContainer from "./Products/ProductsContainer";
 import Products from "./Products/Products";
-import React, { useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import Modal from "./Cart/Modal";
 
 function App() {
   // eslint-disable-next-line
   const [cartItem, setCartItem] = useState([]);
-  // eslint-disable-next-line
-  const [idValue, setIdValue] = useState("");
   const [modalValue, setModalValue] = useState(false);
   const [filterValue, setFilterValue] = useState("");
 
   // svi proizvodi iz koji su renderovani na ekran
   const [curData, setCurData] = useState([]);
 
-  function fetchUserData() {
+  const fetchUserData = useCallback(() => {
     fetch("https://fakestoreapi.com/products")
       .then((endpoint) => {
         return endpoint.json();
@@ -27,13 +25,13 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }
+  }, []);
   useEffect(() => {
     fetchUserData();
-  }, []);
+  }, [fetchUserData]);
+
   function getFilterValue(value) {
     setFilterValue(value);
-    setIdValue(value);
   }
   // Adding item from cart
   function addToCart(id) {
