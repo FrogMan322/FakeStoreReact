@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment } from "react";
 import classes from "./Modal.module.css";
 
 function ModalOverlay(props) {
@@ -15,27 +15,18 @@ function ModalOverlay(props) {
   );
 }
 function Cart(props) {
-  const [cartItemStorage, setCartItemsStorage] = useState([]);
-  useEffect(() => {
-    const storageData = JSON.parse(localStorage.getItem("cartData"));
-    if (storageData) {
-      setCartItemsStorage(storageData);
-    }
-  }, [setCartItemsStorage, cartItemStorage]);
-  const totalSumPrice = cartItemStorage.reduce((cv, acc) => {
-    return cv + acc.price;
-  }, 0);
-  const totalSumQuantity = cartItemStorage.reduce((cv, acc) => {
-    return cv + acc.quantity;
-  }, 0);
-  const sumTotalPrice = totalSumPrice * totalSumQuantity;
+  // const totalSumPrice = props.cartData.reduce((cv, acc) => {
+  //   return cv + acc.price;
+  // }, 0);
+  // const totalSumQuantity = props.cartData.reduce((cv, acc) => {
+  //   return cv + acc.quantity;
+  // }, 0);
+  // const sumTotalPrice = totalSumPrice * totalSumQuantity;
   return (
     <div className={classes["cart__container"]}>
-      <h1 className={classes.total}>
-        Total Value: {`$${sumTotalPrice.toFixed(2)}`}
-      </h1>
+      <h1 className={classes.total}>Total Value: {`23`}</h1>
       {/* <h1 className={classes["cart__info"]}>Cart</h1> */}
-      {cartItemStorage.map((obj, idx) => {
+      {props.cartData.map((obj, idx) => {
         return (
           <div key={idx} className={classes["product__container"]}>
             <img src={obj.image} alt="" />

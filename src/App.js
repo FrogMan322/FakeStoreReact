@@ -1,9 +1,9 @@
 import classes from "./App.module.css";
-import Nav from "./Nav/Nav";
-import ProductsContainer from "./Products/ProductsContainer";
-import Products from "./Products/Products";
 import React, { useCallback, useState, useEffect } from "react";
 import Modal from "./Cart/Modal";
+import ProductsContainer from "./Products/ProductsContainer";
+import Products from "./Products/Products";
+import Nav from "./Nav/Nav";
 
 function App() {
   // eslint-disable-next-line
@@ -11,7 +11,7 @@ function App() {
   const [modalValue, setModalValue] = useState(false);
   const [filterValue, setFilterValue] = useState("");
 
-  // svi proizvodi iz koji su renderovani na ekran
+  // Rendering on screen
   const [curData, setCurData] = useState([]);
 
   const fetchUserData = useCallback(async () => {
@@ -26,9 +26,7 @@ function App() {
   useEffect(() => {
     fetchUserData();
   }, [fetchUserData]);
-  useEffect(() => {
-    localStorage.setItem("cartData", JSON.stringify(cartItem));
-  }, [cartItem]);
+
   function getFilterValue(value) {
     setFilterValue(value);
   }
@@ -54,7 +52,6 @@ function App() {
     const updateCart = cartItem.filter((el) => {
       return el.id !== id;
     });
-
     setCartItem(updateCart);
   }
   return (
