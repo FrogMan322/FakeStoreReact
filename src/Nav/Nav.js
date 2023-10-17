@@ -6,6 +6,10 @@ function Nav(props) {
     props.onFilter(value);
   }
 
+  const quantity = props.cartQuantity.reduce((acc, cv) => {
+    return cv.quantity + acc;
+  }, 0);
+
   return (
     <div className={classes.container}>
       <h1 className={classes["store__name"]}>Random Store</h1>
@@ -17,7 +21,7 @@ function Nav(props) {
         className={classes["cart"]}
       >
         <i className="bi bi-cart"></i>
-        <p className={classes["cart__number"]}>{0}</p>
+        <p className={classes["cart__number"]}>{quantity}</p>
       </div>
     </div>
   );

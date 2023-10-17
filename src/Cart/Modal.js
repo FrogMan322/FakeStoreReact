@@ -28,7 +28,7 @@ function Cart(props) {
               <button
                 className={classes["delete__btn"]}
                 onClick={() => {
-                  props.onDelete(obj.id);
+                  props.deleteItem(obj.id);
                 }}
               >
                 Delete
@@ -49,7 +49,7 @@ function Modal(props) {
       )}
       {ReactDOM.createPortal(
         <Cart
-          onDelete={props.onDeleteItem}
+          deleteItem={props.deleteItem}
           onClose={props.onClose}
           updateCart={props.cartData}
         />,
