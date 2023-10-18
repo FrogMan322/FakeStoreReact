@@ -6,7 +6,9 @@ import Products from "./Products/Products";
 import Nav from "./Nav/Nav";
 
 function App() {
-  const [cartItem, setCartItem] = useState([]);
+  const [cartItem, setCartItem] = useState(
+    JSON.parse(localStorage.getItem("cartItem")) || []
+  );
   const [modalValue, setModalValue] = useState(false);
   const [filterValue, setFilterValue] = useState("");
 
@@ -22,11 +24,14 @@ function App() {
       throw new Error(err);
     }
   }, []);
-  
+
   useEffect(() => {
     fetchUserData();
   }, [fetchUserData]);
 
+  useEffect(() => {
+    localStorage.setItem("cartItem", JSON.stringify(cartItem));
+  }, [cartItem]);
   function getFilterValue(value) {
     setFilterValue(value);
   }
