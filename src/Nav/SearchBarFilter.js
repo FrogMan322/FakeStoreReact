@@ -4,6 +4,7 @@ import classes from "./SearchBarFilter.module.css";
 
 function SearchBarFilter(props) {
   const [value, setValue] = useState("");
+
   function onSubmitHandler(e) {
     e.preventDefault();
     props.onSubmit(value);
