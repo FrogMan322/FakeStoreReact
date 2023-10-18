@@ -6,7 +6,6 @@ import Products from "./Products/Products";
 import Nav from "./Nav/Nav";
 
 function App() {
-  // eslint-disable-next-line
   const [cartItem, setCartItem] = useState([]);
   const [modalValue, setModalValue] = useState(false);
   const [filterValue, setFilterValue] = useState("");
@@ -23,6 +22,7 @@ function App() {
       throw new Error(err);
     }
   }, []);
+  
   useEffect(() => {
     fetchUserData();
   }, [fetchUserData]);
