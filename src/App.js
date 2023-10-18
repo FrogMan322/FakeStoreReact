@@ -36,7 +36,7 @@ function App() {
     setFilterValue(value);
   }
   // Adding item from cart
-  async function addToCart(id) {
+  const addToCart = async (id) => {
     try {
       const itemIndex = cartItem.findIndex((cartItem) => cartItem.id === id);
       const endpoint = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -52,7 +52,8 @@ function App() {
     } catch (err) {
       throw new Error(err);
     }
-  }
+  };
+
   function deleteItem(id) {
     const updateCart = cartItem.filter((el) => {
       return el.id !== id;

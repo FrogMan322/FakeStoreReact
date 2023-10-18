@@ -28,4 +28,4 @@ function SearchBarFilter(props) {
 
   return <Fragment>{formData}</Fragment>;
 }
-export default SearchBarFilter;
+export default React.memo(SearchBarFilter);

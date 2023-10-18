@@ -1,4 +1,5 @@
 import classes from "./Products.module.css";
+import React from "react";
 function Products(props) {
   return (
     <div key={props.value} className={classes.wraper}>
@@ -21,4 +22,4 @@ function Products(props) {
   );
 }
 
-export default Products;
+export default React.memo(Products);
