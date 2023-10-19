@@ -34,6 +34,14 @@ function Cart(props) {
       <h1 className={classes.total}>
         Total Value: {`$${sumTotalPrice.toFixed(2)}`}
       </h1>
+      <button
+        className={classes[`clear__cart`]}
+        onClick={() => {
+          props.clearCart([]);
+        }}
+      >
+        Clear Cart
+      </button>
       {/* <h1 className={classes["cart__info"]}>Cart</h1> */}
       {props.updateCart.map((obj, idx) => {
         return (
@@ -71,6 +79,8 @@ function Modal(props) {
       )}
       {ReactDOM.createPortal(
         <Cart
+          clearCart={props.clearCart}
+          setModalValue={props.setModalValue}
           modalValue={props.modalValue}
           deleteItem={props.deleteItem}
           onClose={props.onClose}

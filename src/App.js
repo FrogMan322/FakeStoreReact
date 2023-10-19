@@ -73,6 +73,7 @@ function App() {
     <div className={classes.container}>
       {
         <Modal
+          clearCart={setCartItem}
           modalValue={modalValue}
           setModalValue={setModalValue}
           deleteItem={deleteItem}
