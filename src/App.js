@@ -23,7 +23,7 @@ function App() {
       setError(null);
       const endpoint = await fetch("https://fakestoreapi.com/products");
       if (!endpoint.ok) {
-        throw new Error("Faild To Load Products try later");
+        throw new Error("FAILD TO LOAD PRODUCTS TRY LATER");
       }
       const data = await endpoint.json();
       setCurData(data);
@@ -112,7 +112,9 @@ function App() {
                 />
               );
             })}
-        {isLoading && <h1 className={classes["error-status"]}>{error}</h1>}
+        {isLoading && curData.length < 1 && (
+          <h1 className={classes["error-status"]}>{error}</h1>
+        )}
       </ProductsContainer>
     </div>
   );
