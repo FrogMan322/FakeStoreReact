@@ -149,16 +149,16 @@ table {
 }
 @keyframes color {
   0% {
-    background-color: rgba(134, 13, 13, 0.1);
+    background-color: rgba(255, 0, 0, 0.1);
   }
   25% {
-    background-color: rgba(134, 13, 13, 0.3);
+    background-color: rgba(255, 0, 0, 0.3);
   }
   50% {
-    background-color: rgba(134, 13, 13, 0.5);
+    background-color: rgba(255, 0, 0, 0.5);
   }
   75% {
-    background-color: rgba(134, 13, 13, 0.7);
+    background-color: rgba(255, 0, 0, 0.7);
   }
   100% {
     background-color: rgba(255, 0, 0, 1);
