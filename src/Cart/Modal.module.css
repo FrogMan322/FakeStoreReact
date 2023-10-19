@@ -20,7 +20,6 @@
   position: fixed;
   z-index: 150;
   gap: 15px;
-  transition: transform ease-in 1000;
 }
 
 .cart__info {
