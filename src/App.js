@@ -14,15 +14,23 @@ function App() {
 
   // Rendering on screen
   const [curData, setCurData] = useState([]);
-
+  // error handlig states
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const fetchUserData = useCallback(async () => {
     try {
+      setIsLoading(false);
+      setError(null);
       const endpoint = await fetch("https://fakestoreapi.com/products");
+      if (!endpoint.ok) {
+        throw new Error("Faild To Load Products try later");
+      }
       const data = await endpoint.json();
       setCurData(data);
-    } catch (err) {
-      throw new Error(err);
+    } catch (error) {
+      setError(error.message);
     }
+    setIsLoading(true);
   }, []);
 
   useEffect(() => {
@@ -74,32 +82,37 @@ function App() {
         onClose={setModalValue}
         cartQuantity={cartItem}
       />
+
       <ProductsContainer>
-        {curData // eslint-disable-next-line
-          .filter((obj, index) => {
-            const value = filterValue.toLowerCase();
-            if (value === "") {
-              return obj;
-            } else if (
-              obj.title.toLowerCase().includes(value) ||
-              obj.category.toLowerCase().includes(value) ||
-              obj.description.toLowerCase().includes(value)
-            ) {
-              return obj;
-            }
-          })
-          .map((obj) => {
-            return (
-              <Products
-                onClick={addToCart}
-                title={obj.title}
-                price={obj.price}
-                image={obj.image}
-                key={obj.id}
-                id={obj.id}
-              />
-            );
-          })}
+        {!isLoading && <h1 className={classes.loding}>Loading...</h1>}
+        {isLoading &&
+          curData.length > 0 &&
+          curData // eslint-disable-next-line
+            .filter((obj) => {
+              const value = filterValue.toLowerCase();
+              if (value === "") {
+                return obj;
+              } else if (
+                obj.title.toLowerCase().includes(value) ||
+                obj.category.toLowerCase().includes(value) ||
+                obj.description.toLowerCase().includes(value)
+              ) {
+                return obj;
+              }
+            })
+            .map((obj) => {
+              return (
+                <Products
+                  onClick={addToCart}
+                  title={obj.title}
+                  price={obj.price}
+                  image={obj.image}
+                  key={obj.id}
+                  id={obj.id}
+                />
+              );
+            })}
+        {isLoading && <h1 className={classes["error-status"]}>{error}</h1>}
       </ProductsContainer>
     </div>
   );

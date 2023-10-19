@@ -134,3 +134,14 @@ table {
   width: 100%;
   min-height: 500px;
 }
+.error-status {
+  background-color: red;
+  padding: 2rem;
+  font-size: 3rem;
+  border-radius: 3rem;
+}
+.loding {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-top: 10rem;
+  font-size: 5rem;
+}
