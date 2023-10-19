@@ -68,16 +68,19 @@ function App() {
     });
     setCartItem(updateCart);
   }
+  // !! FIXING ANIMATION modalValue
   return (
     <div className={classes.container}>
-      {modalValue && (
+      {
         <Modal
-          onClose={setModalValue}
+          modalValue={modalValue}
+          setModalValue={setModalValue}
           deleteItem={deleteItem}
           cartData={cartItem}
         />
-      )}
+      }
       <Nav
+        setModalValue={setModalValue}
         onFilter={getFilterValue}
         onClose={setModalValue}
         cartQuantity={cartItem}

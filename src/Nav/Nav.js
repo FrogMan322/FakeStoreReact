@@ -16,7 +16,7 @@ function Nav(props) {
       <SearchBarFilter onSubmit={getValue} />
       <div
         onClick={() => {
-          props.onClose(true);
+          props.setModalValue((prev) => !prev);
         }}
         className={classes["cart"]}
       >

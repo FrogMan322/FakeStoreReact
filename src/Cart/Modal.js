@@ -6,9 +6,11 @@ function ModalOverlay(props) {
   return (
     <div
       onClick={() => {
-        props.onClose(false);
+        props.setModalValue((prev) => !prev);
       }}
-      className={classes.modal__container}
+      className={`${classes[`modal__container`]} ${
+        props.modalValue ? classes[`modal__display`] : ""
+      }`}
     >
       {props.children}
     </div>
@@ -22,9 +24,13 @@ function Cart(props) {
     return cv + acc.quantity;
   }, 0);
   const sumTotalPrice = totalSumPrice * totalSumQuantity;
-  // show;
+  // modalValue
   return (
-    <div className={classes[`cart__container`]}>
+    <div
+      className={`${classes[`cart__container`]} ${
+        props.modalValue ? classes[`show`] : ""
+      }`}
+    >
       <h1 className={classes.total}>
         Total Value: {`$${sumTotalPrice.toFixed(2)}`}
       </h1>
@@ -55,11 +61,17 @@ function Modal(props) {
   return (
     <Fragment>
       {ReactDOM.createPortal(
-        <ModalOverlay onClose={props.onClose} />,
+        <ModalOverlay
+          setModalValue={props.setModalValue}
+          modalValue={props.modalValue}
+          onClose={props.onClose}
+          showModal={props.showBar}
+        />,
         document.getElementById("modal__overlay")
       )}
       {ReactDOM.createPortal(
         <Cart
+          modalValue={props.modalValue}
           deleteItem={props.deleteItem}
           onClose={props.onClose}
           updateCart={props.cartData}

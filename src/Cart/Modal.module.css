@@ -8,6 +8,7 @@
   right: 0;
   background-color: rgba(0, 0, 0, 0.485);
   z-index: 100;
+  display: none;
 }
 .cart__container {
   top: 0;
@@ -17,11 +18,18 @@
   width: 500px;
   background-color: white;
   border: 1px solid orange;
-  position: fixed;
+  position: absolute;
   z-index: 150;
   gap: 15px;
+  transform: translate(-100%);
+  transition: transform ease-in 200ms;
 }
-
+.show {
+  transform: translate(0%);
+}
+.modal__display {
+  display: block;
+}
 .cart__info {
   font-size: 2rem;
 }
