@@ -22,8 +22,9 @@ function Cart(props) {
     return cv + acc.quantity;
   }, 0);
   const sumTotalPrice = totalSumPrice * totalSumQuantity;
+  // show;
   return (
-    <div className={classes["cart__container"]}>
+    <div className={classes[`cart__container`]}>
       <h1 className={classes.total}>
         Total Value: {`$${sumTotalPrice.toFixed(2)}`}
       </h1>
