@@ -11,7 +11,6 @@ function App() {
   );
   const [modalValue, setModalValue] = useState(false);
   const [filterValue, setFilterValue] = useState("");
-
   // Rendering on screen
   const [curData, setCurData] = useState([]);
   // error handlig states
@@ -68,16 +67,32 @@ function App() {
     });
     setCartItem(updateCart);
   }
-  function increment(id) {
-    console.log(id);
+  function incrementDecriment(id, action) {
+    if (action === "incriment") {
+      const updatedCart = cartItem.map((item) => {
+        if (item.id === id) {
+          return { ...item, quantity: item.quantity + 1 };
+        }
+        return item;
+      });
+      setCartItem(updatedCart);
+    } else if (action === "decriment") {
+      const updatedCart = cartItem.map((item) => {
+        if (item.id === id) {
+          return { ...item, quantity: item.quantity - 1 };
+        }
+        return item;
+      });
+      setCartItem(updatedCart);
+    }
   }
-  // function decriment() {}
+
   return (
     <div className={classes.container}>
       {
         <Modal
           setCartItem={setCartItem}
-          increment={increment}
+          incrementDecriment={incrementDecriment}
           clearCart={setCartItem}
           modalValue={modalValue}
           setModalValue={setModalValue}

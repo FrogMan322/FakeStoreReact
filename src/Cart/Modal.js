@@ -38,7 +38,7 @@ function Cart(props) {
         props.modalValue ? classes[`show`] : ""
       }`}
     >
-      <h1 className={classes.total}>Total Value: {`$${total}`}</h1>
+      <h1 className={classes.total}>Total Value: {`$${total.toFixed(2)}`}</h1>
       <button
         className={classes[`clear__cart`]}
         onClick={() => {
@@ -53,21 +53,25 @@ function Cart(props) {
             <img src={obj.image} alt="" />
             <div className={classes["cart__data"]}>
               <div className={classes["quantity__container"]}>
-                <h1>
+                <h1
+                  onClick={() => {
+                    props.incrementDecriment(obj.id, "decriment");
+                  }}
+                >
                   {" "}
                   <Icon.FileMinus />{" "}
                 </h1>
                 <h1>Quantity:{obj.quantity}</h1>
                 <h1
                   onClick={() => {
-                    props.increment(obj.id);
+                    props.incrementDecriment(obj.id, "incriment");
                   }}
                 >
                   {" "}
                   <Icon.FilePlus />{" "}
                 </h1>
               </div>
-              <h1>Price:{obj.price}</h1>
+              <h1>Price: ${obj.price}</h1>
               <button
                 className={classes["delete__btn"]}
                 onClick={() => {
@@ -98,7 +102,7 @@ function Modal(props) {
       {ReactDOM.createPortal(
         <Cart
           setCartIte={props.setCartItem}
-          increment={props.increment}
+          incrementDecriment={props.incrementDecriment}
           clearCart={props.clearCart}
           setModalValue={props.setModalValue}
           modalValue={props.modalValue}
