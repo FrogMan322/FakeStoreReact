@@ -127,3 +127,13 @@
   background-color: black;
   color: red;
 }
+
+.quantity__container {
+  height: 10rem;
+  width: 10rem;
+  font-size: 1.8rem;
+  display: flex;
+}
+.quantity__container h1 {
+  cursor: pointer;
+}

@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import classes from "./Modal.module.css";
+import * as Icon from "react-bootstrap-icons";
 
 function ModalOverlay(props) {
   return (
@@ -17,23 +18,27 @@ function ModalOverlay(props) {
   );
 }
 function Cart(props) {
-  const totalSumPrice = props.updateCart.reduce((cv, acc) => {
-    return cv + acc.price;
-  }, 0);
-  const totalSumQuantity = props.updateCart.reduce((cv, acc) => {
-    return cv + acc.quantity;
-  }, 0);
-  const sumTotalPrice = totalSumPrice * totalSumQuantity;
-  // modalValue
+  const [total, setTotal] = useState(0);
+  useEffect(() => {
+    const quantity = props.updateCart.reduce((accumulator, currentValue) => {
+      const sum = accumulator + currentValue.quantity;
+      return sum;
+    }, 0);
+    const totalValue = props.updateCart.reduce((accumulator, currentValue) => {
+      const sum = accumulator + currentValue.price;
+      return sum;
+    }, 0);
+    const sum = totalValue * quantity;
+    setTotal(sum);
+  }, [total, props.updateCart]);
+
   return (
     <div
       className={`${classes[`cart__container`]} ${
         props.modalValue ? classes[`show`] : ""
       }`}
     >
-      <h1 className={classes.total}>
-        Total Value: {`$${sumTotalPrice.toFixed(2)}`}
-      </h1>
+      <h1 className={classes.total}>Total Value: {`$${total}`}</h1>
       <button
         className={classes[`clear__cart`]}
         onClick={() => {
@@ -42,13 +47,26 @@ function Cart(props) {
       >
         Clear Cart
       </button>
-      {/* <h1 className={classes["cart__info"]}>Cart</h1> */}
       {props.updateCart.map((obj, idx) => {
         return (
           <div key={idx} className={classes["product__container"]}>
             <img src={obj.image} alt="" />
             <div className={classes["cart__data"]}>
-              <h1>Quantity:{obj.quantity}</h1>
+              <div className={classes["quantity__container"]}>
+                <h1>
+                  {" "}
+                  <Icon.FileMinus />{" "}
+                </h1>
+                <h1>Quantity:{obj.quantity}</h1>
+                <h1
+                  onClick={() => {
+                    props.increment(obj.id);
+                  }}
+                >
+                  {" "}
+                  <Icon.FilePlus />{" "}
+                </h1>
+              </div>
               <h1>Price:{obj.price}</h1>
               <button
                 className={classes["delete__btn"]}
@@ -79,6 +97,8 @@ function Modal(props) {
       )}
       {ReactDOM.createPortal(
         <Cart
+          setCartIte={props.setCartItem}
+          increment={props.increment}
           clearCart={props.clearCart}
           setModalValue={props.setModalValue}
           modalValue={props.modalValue}

@@ -68,11 +68,16 @@ function App() {
     });
     setCartItem(updateCart);
   }
-  // !! FIXING ANIMATION modalValue
+  function increment(id) {
+    console.log(id);
+  }
+  // function decriment() {}
   return (
     <div className={classes.container}>
       {
         <Modal
+          setCartItem={setCartItem}
+          increment={increment}
           clearCart={setCartItem}
           modalValue={modalValue}
           setModalValue={setModalValue}
