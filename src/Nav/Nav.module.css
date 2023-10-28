@@ -38,22 +38,4 @@
   font-family: "Roboto,Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
     sans-serif;
   font-weight: 400;
-  /* animation: number 500ms linear; */
 }
-/* @keyframes number {
-  0% {
-    padding: 3.2px;
-  }
-  25% {
-    padding: 3.5px;
-  }
-  50% {
-    padding: 3.7px;
-  }
-  75% {
-    padding: 4;
-  }
-  100% {
-    padding: 4.2px;
-  }
-} */

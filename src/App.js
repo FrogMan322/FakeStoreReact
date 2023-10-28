@@ -67,6 +67,7 @@ function App() {
     });
     setCartItem(updateCart);
   }
+
   function incrementDecriment(id, action) {
     if (action === "incriment") {
       const updatedCart = cartItem.map((item) => {
