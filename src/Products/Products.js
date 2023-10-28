@@ -7,7 +7,7 @@ function Products(props) {
         <img src={props.image} alt="" />
         <div className={classes["product__data"]}>
           <h1 className={classes["description"]}>{props.title}</h1>
-          <h1 className={classes["price"]}>Price: {props.price}$</h1>
+          <h1 className={classes["price"]}>Price: ${props.price}</h1>
           <button
             className={classes["add_to_cart_btn"]}
             onClick={() => {
