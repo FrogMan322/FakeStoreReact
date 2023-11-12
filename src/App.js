@@ -85,6 +85,16 @@ function App() {
         return item;
       });
       setCartItem(updatedCart);
+      // Deletes element when the quantity reaches zero
+      const findEl = cartItem.find((el) => {
+        return el.id === id;
+      });
+      if (findEl.quantity < 2) {
+        const updatedCart = cartItem.filter((el) => {
+          return el.id !== id;
+        });
+        setCartItem(updatedCart);
+      }
     }
   }
 
