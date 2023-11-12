@@ -106,6 +106,7 @@ function App() {
       }
     }
   }
+  // Geting image data for modal
   const getImage = async (id) => {
     const endpoint = await fetch(`https://fakestoreapi.com/products/${id}`);
     const data = await endpoint.json();
