@@ -4,13 +4,21 @@ import Modal from "./Cart/Modal";
 import ProductsContainer from "./Products/ProductsContainer";
 import Products from "./Products/Products";
 import Nav from "./Nav/Nav";
+// Image Modal
+import ImageBackdrop from "./ImageModal/ImageModal";
 
 function App() {
   const [cartItem, setCartItem] = useState(
     JSON.parse(localStorage.getItem("cartItem")) || []
   );
+  // Image Modal
+  const [showImgModal, setShowImageModal] = useState(false);
+  const [imageValue, setImageValue] = useState("");
+
+  // Modal value
   const [modalValue, setModalValue] = useState(false);
   const [filterValue, setFilterValue] = useState("");
+
   // Rendering on screen
   const [curData, setCurData] = useState([]);
   // error handlig states
@@ -61,14 +69,14 @@ function App() {
       throw new Error(err);
     }
   };
-
+  // Deleting items form cart
   function deleteItem(id) {
     const updateCart = cartItem.filter((el) => {
       return el.id !== id;
     });
     setCartItem(updateCart);
   }
-
+  // Incrementing decrimenting quantity
   function incrementDecriment(id, action) {
     if (action === "incriment") {
       const updatedCart = cartItem.map((item) => {
@@ -98,9 +106,22 @@ function App() {
       }
     }
   }
+  const getImage = async (id) => {
+    const endpoint = await fetch(`https://fakestoreapi.com/products/${id}`);
+    const data = await endpoint.json();
+
+    setImageValue(data.image);
+  };
 
   return (
     <div className={classes.container}>
+      {showImgModal && (
+        <ImageBackdrop
+          imageValue={imageValue}
+          setImageValue={setImageValue}
+          showImage={setShowImageModal}
+        />
+      )}
       {
         <Modal
           setCartItem={setCartItem}
@@ -139,6 +160,8 @@ function App() {
             .map((obj) => {
               return (
                 <Products
+                  setShowImageModal={setShowImageModal}
+                  getImage={getImage}
                   onClick={addToCart}
                   title={obj.title}
                   price={obj.price}

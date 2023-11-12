@@ -1,0 +1,23 @@
+/* Container for backdrop */
+.container {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  z-index: 600;
+}
+
+.imageContainer {
+  position: fixed;
+  z-index: 600;
+  width: 700px;
+  height: 700px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.imageContainerData {
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+}
