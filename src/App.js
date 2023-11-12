@@ -16,6 +16,7 @@ function App() {
   // error handlig states
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
   const fetchUserData = useCallback(async () => {
     try {
       setIsLoading(false);
