@@ -34,13 +34,13 @@
 }
 .cart__wraper {
   width: 100%;
-  height: 200px;
+  height: 250px;
 }
 .product__container {
   margin: 20px 0;
   font-family: "Roboto";
   width: 100%;
-  height: 200px;
+  height: 250px;
   border: 1px solid black;
   border-radius: 20px;
   display: flex;
@@ -136,4 +136,10 @@
 }
 .quantity__container h1 {
   cursor: pointer;
+}
+
+.numbersCart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

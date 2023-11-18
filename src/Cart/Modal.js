@@ -54,6 +54,7 @@ function Cart(props) {
             <div className={classes["cart__data"]}>
               <div className={classes["quantity__container"]}>
                 <h1
+                  className={classes.numbersCart}
                   onClick={() => {
                     props.incrementDecriment(obj.id, "decriment");
                   }}
@@ -61,8 +62,9 @@ function Cart(props) {
                   {" "}
                   <Icon.FileMinus />{" "}
                 </h1>
-                <h1>Quantity:{obj.quantity}</h1>
+                <h1 className={classes.numbersCart}>Quantity:{obj.quantity}</h1>
                 <h1
+                  className={classes.numbersCart}
                   onClick={() => {
                     props.incrementDecriment(obj.id, "incriment");
                   }}
