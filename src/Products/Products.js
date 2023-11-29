@@ -1,10 +1,15 @@
 import classes from "./Products.module.css";
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { storeItemsActions } from "../Store/store";
 function Products(props) {
+  const dispatch = useDispatch();
   function showImage(id) {
     props.getImage(id);
   }
-  //setShowImageModal={setShowImageModal} showImage.bind(null, props.id)
+  const addToCart = (id) => {
+    dispatch(storeItemsActions.addToCart(id));
+  };
   return (
     <div key={props.value} className={classes.wraper}>
       <div key={props.data} className={classes["product__card"]}>
@@ -22,7 +27,7 @@ function Products(props) {
           <button
             className={classes["add_to_cart_btn"]}
             onClick={() => {
-              props.onClick(props.id);
+              addToCart(props.id);
             }}
           >
             Add to Cart
