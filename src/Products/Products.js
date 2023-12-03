@@ -1,15 +1,26 @@
 import classes from "./Products.module.css";
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { storeItemsActions } from "../Store/store";
 function Products(props) {
+  const [cartItems, setCartItems] = useState([]);
   const dispatch = useDispatch();
   function showImage(id) {
     props.getImage(id);
   }
+  useEffect(() => {
+    const setCart = async () => {
+      const endpoint = await fetch("https://fakestoreapi.com/products");
+      const data = await endpoint.json();
+      setCartItems(data);
+    };
+    setCart();
+  }, [cartItems]);
   const addToCart = (id) => {
-    dispatch(storeItemsActions.addToCart(id));
+    //cartItems, id
+    dispatch(storeItemsActions.addToCart({ items: cartItems, id: id }));
   };
+
   return (
     <div key={props.value} className={classes.wraper}>
       <div key={props.data} className={classes["product__card"]}>
@@ -21,6 +32,7 @@ function Products(props) {
             showImage(props.id);
           }}
         />
+
         <div className={classes["product__data"]}>
           <h1 className={classes["description"]}>{props.title}</h1>
           <h1 className={classes["price"]}>Price: ${props.price}</h1>

@@ -2,7 +2,7 @@ import ReactDOM from "react-dom";
 import React, { Fragment, useEffect, useState } from "react";
 import classes from "./Modal.module.css";
 import * as Icon from "react-bootstrap-icons";
-
+import { useSelector } from "react-redux";
 function ModalOverlay(props) {
   return (
     <div
@@ -18,6 +18,7 @@ function ModalOverlay(props) {
   );
 }
 function Cart(props) {
+  const cart = useSelector((cart) => cart.cartItems);
   const [total, setTotal] = useState(0);
   useEffect(() => {
     const quantity = props.updateCart.reduce((accumulator, currentValue) => {
@@ -47,7 +48,7 @@ function Cart(props) {
       >
         Clear Cart
       </button>
-      {props.updateCart.map((obj, idx) => {
+      {cart.map((obj, idx) => {
         return (
           <div key={idx} className={classes["product__container"]}>
             <img src={obj.image} alt="" />

@@ -6,12 +6,21 @@ const storeItems = createSlice({
   name: "store",
   initialState: initialState,
   reducers: {
-    addToCart: async (state, id) => {
-      // id radi
-      const endpoint = await fetch(
-        `https://fakestoreapi.com/products/${id.payload}`
-      );
-      const data = await endpoint.json();
+    addToCart: (state, action) => {
+      const id = action.payload.id;
+      const items = action.payload.items;
+      const checking = state.cartItems.find((item) => item.id === id);
+      const wantedItem = items.find((item) => item.id === id);
+      if (checking === undefined) {
+        state.cartItems.push({ ...wantedItem, quantity: 1 });
+      } else {
+        state.cartItems.map((item) => {
+          if (item.id === id) {
+            item.quantity++;
+            return;
+          }
+        });
+      }
     },
   },
 });
