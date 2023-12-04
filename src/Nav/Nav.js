@@ -11,9 +11,10 @@ function Nav(props) {
   const cartItems = useSelector((cart) => cart.cartItems);
   const totalQuantity = useSelector((cart) => cart.quantity);
   const dispatch = useDispatch();
+
   const numbers = useCallback(() => {
     dispatch(storeItemsActions.amount(cartItems)); // eslint-disable-next-line
-  }, [totalQuantity, cartItems, dispatch, totalQuantity]);
+  }, [totalQuantity, cartItems, dispatch]);
 
   useEffect(() => {
     numbers();

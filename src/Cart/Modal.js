@@ -66,7 +66,7 @@ function Cart(props) {
                   <Icon.FilePlus />{" "}
                 </h1>
               </div>
-              <h1>Price: ${obj.price}</h1>
+              <h1>Price: ${(obj.price * obj.quantity).toFixed(2)}</h1>
               <button
                 className={classes["delete__btn"]}
                 onClick={() => {

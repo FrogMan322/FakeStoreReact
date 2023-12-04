@@ -60,7 +60,7 @@ const storeItems = createSlice({
     },
     amount: (state, action) => {
       const totalSum = action.payload;
-
+      console.log(action.payload);
       const totalQuantity = totalSum
         .map((item) => item.quantity)
         .reduce((ac, cv) => ac + cv, 0);
