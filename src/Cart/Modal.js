@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import React, { Fragment, useCallback, useEffect } from "react";
+import React, { Fragment } from "react";
 import classes from "./Modal.module.css";
 import * as Icon from "react-bootstrap-icons";
 import { useSelector, useDispatch } from "react-redux";
@@ -21,14 +21,7 @@ function ModalOverlay(props) {
 function Cart(props) {
   const dispatch = useDispatch();
   const cart = useSelector((cart) => cart.cartItems);
-  const price = useSelector((cart) => cart.totalAmount);
-  const totalMoney = useCallback(() => {
-    dispatch(storeItemsActions.totalSumNumber(cart));
-    // eslint-disable-next-line
-  }, [dispatch, cart, storeItemsActions]);
-  useEffect(() => {
-    totalMoney();
-  }, [totalMoney]);
+  const totalMoney = useSelector((cart) => cart.totalAmount);
 
   return (
     <div
@@ -36,7 +29,9 @@ function Cart(props) {
         props.modalValue ? classes[`show`] : ""
       }`}
     >
-      <h1 className={classes.total}>Total Value: {`$${price.toFixed(2)}`}</h1>
+      <h1 className={classes.total}>
+        Total Value: {`$${totalMoney.toFixed(2)}`}
+      </h1>
       <button
         className={classes[`clear__cart`]}
         onClick={() => {

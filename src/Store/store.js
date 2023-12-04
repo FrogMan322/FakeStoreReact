@@ -64,10 +64,12 @@ const storeItems = createSlice({
       const totalQuantity = totalSum
         .map((item) => item.quantity)
         .reduce((ac, cv) => ac + cv, 0);
+
+      const totalPrice = totalSum
+        .map((item) => item.price)
+        .reduce((ac, cv) => ac + cv, 0);
       state.quantity = totalQuantity;
-    },
-    totalSumNumber: (state, action) => {
-      // u action ti se nalaze itami
+      state.totalAmount = totalPrice * totalQuantity;
     },
   },
 });
