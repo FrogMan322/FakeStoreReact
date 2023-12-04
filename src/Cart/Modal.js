@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import React, { Fragment } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import classes from "./Modal.module.css";
 import * as Icon from "react-bootstrap-icons";
 import { useSelector, useDispatch } from "react-redux";
@@ -22,6 +22,17 @@ function Cart(props) {
   const dispatch = useDispatch();
   const cart = useSelector((cart) => cart.cartItems);
   const totalMoney = useSelector((cart) => cart.totalAmount);
+  const [isVisible, setIsVisible] = useState(false);
+  const setValueVisible = useCallback(() => {
+    if (cart.length < 1) {
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
+    }
+  }, [cart]);
+  useEffect(() => {
+    setValueVisible();
+  }, [isVisible, setValueVisible]);
 
   return (
     <div
@@ -32,14 +43,28 @@ function Cart(props) {
       <h1 className={classes.total}>
         Total Value: {`$${totalMoney.toFixed(2)}`}
       </h1>
-      <button
-        className={classes[`clear__cart`]}
-        onClick={() => {
-          dispatch(storeItemsActions.cleareCart());
-        }}
-      >
-        Clear Cart
-      </button>
+
+      {isVisible && (
+        <button
+          className={classes[`clear__cart`]}
+          onClick={() => {
+            dispatch(storeItemsActions.cleareCart());
+          }}
+        >
+          Clear Cart
+        </button>
+      )}
+
+      {isVisible && (
+        <button
+          className={classes[`checkout__cart`]}
+          onClick={() => {
+            alert("Routes not added. Till next time.");
+          }}
+        >
+          Checkout
+        </button>
+      )}
       {cart.map((obj, idx) => {
         return (
           <div key={idx} className={classes["product__container"]}>
