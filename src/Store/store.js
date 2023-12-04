@@ -1,6 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-const initialState = { quantity: 0, cartItems: [] };
+const initialState = { quantity: 0, cartItems: [], totalAmount: 0 };
 
 const storeItems = createSlice({
   name: "store",
@@ -57,6 +57,17 @@ const storeItems = createSlice({
     },
     cleareCart: (state) => {
       state.cartItems = [];
+    },
+    amount: (state, action) => {
+      const totalSum = action.payload;
+
+      const totalQuantity = totalSum
+        .map((item) => item.quantity)
+        .reduce((ac, cv) => ac + cv, 0);
+      state.quantity = totalQuantity;
+    },
+    totalSumNumber: (state, action) => {
+      // u action ti se nalaze itami
     },
   },
 });
