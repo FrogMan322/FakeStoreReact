@@ -14,13 +14,49 @@ const storeItems = createSlice({
       if (checking === undefined) {
         state.cartItems.push({ ...wantedItem, quantity: 1 });
       } else {
+        // eslint-disable-next-line
         state.cartItems.map((item) => {
           if (item.id === id) {
             item.quantity++;
-            return;
           }
         });
       }
+    },
+    increment: (state, action) => {
+      const id = action.payload;
+      // eslint-disable-next-line
+      state.cartItems.map((item) => {
+        if (item.id === id) {
+          item.quantity++;
+        }
+      });
+    },
+    decriment: (state, action) => {
+      const id = action.payload;
+      const checkItem = state.cartItems.find((item) => item.id === id);
+      // eslint-disable-next-line
+      state.cartItems.map((item) => {
+        if (item.id === id) {
+          item.quantity--;
+        }
+      });
+      if (checkItem.quantity === 0) {
+        const newCart = state.cartItems.filter((item) => {
+          return item.id !== id;
+        });
+        state.cartItems = newCart;
+      }
+    },
+
+    deleteItem: (state, action) => {
+      const id = action.payload;
+      const newCart = state.cartItems.filter((item) => {
+        return item.id !== id;
+      });
+      state.cartItems = newCart;
+    },
+    cleareCart: (state) => {
+      state.cartItems = [];
     },
   },
 });

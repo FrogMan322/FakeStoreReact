@@ -2,7 +2,8 @@ import ReactDOM from "react-dom";
 import React, { Fragment, useEffect, useState } from "react";
 import classes from "./Modal.module.css";
 import * as Icon from "react-bootstrap-icons";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { storeItemsActions } from "../Store/store";
 function ModalOverlay(props) {
   return (
     <div
@@ -18,6 +19,7 @@ function ModalOverlay(props) {
   );
 }
 function Cart(props) {
+  const dispatch = useDispatch();
   const cart = useSelector((cart) => cart.cartItems);
   const [total, setTotal] = useState(0);
   useEffect(() => {
@@ -43,7 +45,7 @@ function Cart(props) {
       <button
         className={classes[`clear__cart`]}
         onClick={() => {
-          props.clearCart([]);
+          dispatch(storeItemsActions.cleareCart());
         }}
       >
         Clear Cart
@@ -57,7 +59,7 @@ function Cart(props) {
                 <h1
                   className={classes.numbersCart}
                   onClick={() => {
-                    props.incrementDecriment(obj.id, "decriment");
+                    dispatch(storeItemsActions.decriment(obj.id));
                   }}
                 >
                   {" "}
@@ -67,7 +69,7 @@ function Cart(props) {
                 <h1
                   className={classes.numbersCart}
                   onClick={() => {
-                    props.incrementDecriment(obj.id, "incriment");
+                    dispatch(storeItemsActions.increment(obj.id));
                   }}
                 >
                   {" "}
@@ -78,7 +80,7 @@ function Cart(props) {
               <button
                 className={classes["delete__btn"]}
                 onClick={() => {
-                  props.deleteItem(obj.id);
+                  dispatch(storeItemsActions.deleteItem(obj.id));
                 }}
               >
                 Delete
