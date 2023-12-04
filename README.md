@@ -1,6 +1,6 @@
 # Fake Store Api
 
-Bulding fake store api via REACT and using react-redux toolkit for sharing data amountg components
+Bulding fake store api via REACT, and using react-redux toolkit for sharing data among components
 
 ## How to view the site
 
