@@ -5,6 +5,7 @@ const initialState = {
   cartItems: [],
   totalAmount: 0,
   isVisible: false,
+  notification: null,
 };
 
 const storeItems = createSlice({
@@ -73,6 +74,13 @@ const storeItems = createSlice({
         .reduce((ac, cv) => ac + cv, 0);
       state.quantity = totalQuantity;
       state.totalAmount = totalPrice * totalQuantity;
+    },
+    showNotification(state, action) {
+      state.notification = {
+        status: action.payload.status,
+        message: action.payload.message,
+        title: action.payload.title,
+      };
     },
   },
 });
