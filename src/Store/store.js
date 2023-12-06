@@ -75,6 +75,7 @@ const storeItems = createSlice({
       state.quantity = totalQuantity;
       state.totalAmount = totalPrice * totalQuantity;
     },
+    //! Finish this update
     showNotification(state, action) {
       state.notification = {
         status: action.payload.status,
