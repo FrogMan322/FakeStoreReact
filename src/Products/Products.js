@@ -44,6 +44,9 @@ function Products(props) {
           >
             Add to Cart
           </button>
+          <button className={classes["add_to_cart_btn"]}>
+            Products Detail
+          </button>
         </div>
       </div>
     </div>
