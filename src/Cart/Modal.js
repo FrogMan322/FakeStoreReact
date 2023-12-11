@@ -4,14 +4,17 @@ import classes from "./Modal.module.css";
 import * as Icon from "react-bootstrap-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { storeItemsActions } from "../Store/store";
+
 function ModalOverlay(props) {
+  const dispatch = useDispatch();
+  const showCart = useSelector((state) => state.showCart);
   return (
     <div
       onClick={() => {
-        props.setModalValue((prev) => !prev);
+        dispatch(storeItemsActions.slideCart(false));
       }}
       className={`${classes[`modal__container`]} ${
-        props.modalValue ? classes[`modal__display`] : ""
+        showCart ? classes[`modal__display`] : ""
       }`}
     >
       {props.children}
@@ -22,7 +25,9 @@ function Cart(props) {
   const dispatch = useDispatch();
   const cart = useSelector((cart) => cart.cartItems);
   const totalMoney = useSelector((cart) => cart.totalAmount);
+  const showCart = useSelector((state) => state.showCart);
   const [isVisible, setIsVisible] = useState(false);
+
   const setValueVisible = useCallback(() => {
     if (cart.length < 1) {
       setIsVisible(false);
@@ -37,7 +42,7 @@ function Cart(props) {
   return (
     <div
       className={`${classes[`cart__container`]} ${
-        props.modalValue ? classes[`show`] : ""
+        showCart ? classes[`show`] : ""
       }`}
     >
       <h1 className={classes.total}>
@@ -121,9 +126,6 @@ function Modal(props) {
       )}
       {ReactDOM.createPortal(
         <Cart
-          setCartIte={props.setCartItem}
-          incrementDecriment={props.incrementDecriment}
-          clearCart={props.clearCart}
           setModalValue={props.setModalValue}
           modalValue={props.modalValue}
           deleteItem={props.deleteItem}

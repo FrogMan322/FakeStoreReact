@@ -8,8 +8,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 //     path: "/",
 //     element: <RootLayout />,
 //     children: [
-//       { path: "", element: <HomePage /> },
-//       { path: "products/:prodId", element: <ProductDetail /> },
+//       { path: "/", element: <HomePage /> },
+//       { path: "/products/:prodId", element: <ProductDetail /> },
 //     ],
 //   },
 // ]);

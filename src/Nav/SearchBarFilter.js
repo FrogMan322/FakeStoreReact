@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { Fragment } from "react";
 import classes from "./SearchBarFilter.module.css";
-
+import { useDispatch } from "react-redux";
+import { storeItemsActions } from "../Store/store";
 function SearchBarFilter(props) {
+  const dispatch = useDispatch();
   const [value, setValue] = useState("");
 
   function onSubmitHandler(e) {
     e.preventDefault();
-    props.onSubmit(value);
+    dispatch(storeItemsActions.searchValueForm(value));
   }
   function inputValueHandler(e) {
     setValue(e.target.value);

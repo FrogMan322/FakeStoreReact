@@ -8,6 +8,8 @@ const initialState = {
   notification: null,
   modalVisible: false,
   imageValue: "",
+  showCart: false,
+  searchValue: "",
 };
 
 const storeItems = createSlice({
@@ -90,6 +92,12 @@ const storeItems = createSlice({
     },
     getImageValue: (state, action) => {
       state.imageValue = action.payload.image;
+    },
+    slideCart: (state, action) => {
+      state.showCart = action.payload;
+    },
+    searchValueForm: (state, action) => {
+      state.searchValue = action.payload;
     },
   },
 });

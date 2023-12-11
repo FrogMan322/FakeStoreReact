@@ -9,15 +9,10 @@ import { useSelector } from "react-redux";
 import ImageBackdrop from "../ImageModal/ImageModal";
 
 function HomePage() {
-  const [cartItem, setCartItem] = useState(
-    JSON.parse(localStorage.getItem("cartItem")) || []
-  );
   // Image Modal
   const modalIsVisible = useSelector((state) => state.modalVisible);
 
-  // Modal value
-  const [modalValue, setModalValue] = useState(false);
-  const [filterValue, setFilterValue] = useState("");
+  const filterValue = useSelector((state) => state.searchValue);
 
   // Rendering on screen
   const [curData, setCurData] = useState([]);
@@ -45,72 +40,11 @@ function HomePage() {
     fetchUserData();
   }, [fetchUserData]);
 
-  useEffect(() => {
-    localStorage.setItem("cartItem", JSON.stringify(cartItem));
-  }, [cartItem]);
-  function getFilterValue(value) {
-    setFilterValue(value);
-  }
-  // Adding item from cart
-
-  // Deleting items form cart
-  function deleteItem(id) {
-    const updateCart = cartItem.filter((el) => {
-      return el.id !== id;
-    });
-    setCartItem(updateCart);
-  }
-  // Incrementing decrimenting quantity
-  function incrementDecriment(id, action) {
-    if (action === "incriment") {
-      const updatedCart = cartItem.map((item) => {
-        if (item.id === id) {
-          return { ...item, quantity: item.quantity + 1 };
-        }
-        return item;
-      });
-      setCartItem(updatedCart);
-    } else if (action === "decriment") {
-      const updatedCart = cartItem.map((item) => {
-        if (item.id === id) {
-          return { ...item, quantity: item.quantity - 1 };
-        }
-        return item;
-      });
-      setCartItem(updatedCart);
-      // Deletes element when the quantity reaches zero
-      const findEl = cartItem.find((el) => {
-        return el.id === id;
-      });
-      if (findEl.quantity < 2) {
-        const updatedCart = cartItem.filter((el) => {
-          return el.id !== id;
-        });
-        setCartItem(updatedCart);
-      }
-    }
-  }
-
   return (
     <div className={classes.container}>
       {modalIsVisible && <ImageBackdrop />}
-      {
-        <Modal
-          setCartItem={setCartItem}
-          incrementDecriment={incrementDecriment}
-          clearCart={setCartItem}
-          modalValue={modalValue}
-          setModalValue={setModalValue}
-          deleteItem={deleteItem}
-          cartData={cartItem}
-        />
-      }
-      <Nav
-        setModalValue={setModalValue}
-        onFilter={getFilterValue}
-        onClose={setModalValue}
-        cartQuantity={cartItem}
-      />
+      {<Modal />}
+      <Nav />
 
       <ProductsContainer>
         {!isLoading && <h1 className={classes.loding}>Loading...</h1>}
