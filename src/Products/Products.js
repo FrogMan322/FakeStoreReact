@@ -5,9 +5,10 @@ import { storeItemsActions } from "../Store/store";
 function Products(props) {
   const [cartItems, setCartItems] = useState([]);
   const dispatch = useDispatch();
-  function showImage(id) {
-    props.getImage(id);
-  }
+
+  const isVisible = (value) => {
+    dispatch(storeItemsActions.modalVisible(value));
+  };
   useEffect(() => {
     const setCart = async () => {
       const endpoint = await fetch("https://fakestoreapi.com/products");
@@ -17,10 +18,14 @@ function Products(props) {
     setCart();
   }, [cartItems]);
   const addToCart = (id) => {
-    //cartItems, id
     dispatch(storeItemsActions.addToCart({ items: cartItems, id: id }));
   };
-
+  // Geting image data for modal
+  const getImage = async (id) => {
+    const endpoint = await fetch(`https://fakestoreapi.com/products/${id}`);
+    const data = await endpoint.json();
+    dispatch(storeItemsActions.getImageValue(data));
+  };
   return (
     <div key={props.value} className={classes.wraper}>
       <div key={props.data} className={classes["product__card"]}>
@@ -28,8 +33,8 @@ function Products(props) {
           src={props.image}
           alt=""
           onClick={() => {
-            props.setShowImageModal(true);
-            showImage(props.id);
+            getImage(props.id);
+            isVisible(true);
           }}
         />
 

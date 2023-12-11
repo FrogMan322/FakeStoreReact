@@ -1,12 +1,18 @@
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import classes from "./ModalImage.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { storeItemsActions } from "../Store/store";
 function BackDrop(props) {
+  const dispatch = useDispatch();
+  const isVisible = (value) => {
+    dispatch(storeItemsActions.modalVisible(value));
+    dispatch(storeItemsActions.getImageValue(""));
+  };
   return (
     <div
       onClick={() => {
-        props.setImageValue("");
-        props.showImage(false);
+        isVisible(false);
       }}
       className={classes.container}
     >
@@ -15,13 +21,10 @@ function BackDrop(props) {
   );
 }
 function ModalImage(props) {
+  const imageValue = useSelector((state) => state.imageValue);
   return (
     <div className={classes.imageContainer}>
-      <img
-        className={classes["imageContainerData"]}
-        src={props.imageValue}
-        alt=""
-      />
+      <img className={classes["imageContainerData"]} src={imageValue} alt="" />
     </div>
   );
 }
@@ -29,14 +32,11 @@ function ImageBackdrop(props) {
   return (
     <Fragment>
       {ReactDOM.createPortal(
-        <BackDrop
-          showImage={props.showImage}
-          setImageValue={props.setImageValue}
-        />,
+        <BackDrop />,
         document.getElementById("modal__backdrop")
       )}
       {ReactDOM.createPortal(
-        <ModalImage imageValue={props.imageValue} />,
+        <ModalImage />,
         document.getElementById("modal__image__container")
       )}
     </Fragment>

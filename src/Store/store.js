@@ -6,6 +6,8 @@ const initialState = {
   totalAmount: 0,
   isVisible: false,
   notification: null,
+  modalVisible: false,
+  imageValue: "",
 };
 
 const storeItems = createSlice({
@@ -75,13 +77,19 @@ const storeItems = createSlice({
       state.quantity = totalQuantity;
       state.totalAmount = totalPrice * totalQuantity;
     },
+    modalVisible: (state, action) => {
+      state.modalVisible = action.payload;
+    },
     //! Finish this update
-    showNotification(state, action) {
+    showNotification: (state, action) => {
       state.notification = {
         status: action.payload.status,
         message: action.payload.message,
         title: action.payload.title,
       };
+    },
+    getImageValue: (state, action) => {
+      state.imageValue = action.payload.image;
     },
   },
 });

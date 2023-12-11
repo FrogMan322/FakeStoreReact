@@ -4,7 +4,7 @@ import Modal from "../Cart/Modal";
 import ProductsContainer from "../Products/ProductsContainer";
 import Products from "../Products/Products";
 import Nav from "../Nav/Nav";
-
+import { useSelector } from "react-redux";
 // Image Modal
 import ImageBackdrop from "../ImageModal/ImageModal";
 
@@ -13,8 +13,7 @@ function HomePage() {
     JSON.parse(localStorage.getItem("cartItem")) || []
   );
   // Image Modal
-  const [showImgModal, setShowImageModal] = useState(false);
-  const [imageValue, setImageValue] = useState("");
+  const modalIsVisible = useSelector((state) => state.modalVisible);
 
   // Modal value
   const [modalValue, setModalValue] = useState(false);
@@ -91,23 +90,10 @@ function HomePage() {
       }
     }
   }
-  // Geting image data for modal
-  const getImage = async (id) => {
-    const endpoint = await fetch(`https://fakestoreapi.com/products/${id}`);
-    const data = await endpoint.json();
-
-    setImageValue(data.image);
-  };
 
   return (
     <div className={classes.container}>
-      {showImgModal && (
-        <ImageBackdrop
-          imageValue={imageValue}
-          setImageValue={setImageValue}
-          showImage={setShowImageModal}
-        />
-      )}
+      {modalIsVisible && <ImageBackdrop />}
       {
         <Modal
           setCartItem={setCartItem}
@@ -146,8 +132,6 @@ function HomePage() {
             .map((obj) => {
               return (
                 <Products
-                  setShowImageModal={setShowImageModal}
-                  getImage={getImage}
                   title={obj.title}
                   price={obj.price}
                   image={obj.image}

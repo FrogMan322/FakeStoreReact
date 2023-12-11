@@ -10,6 +10,7 @@ function Nav(props) {
   }
   const cartItems = useSelector((cart) => cart.cartItems);
   const totalQuantity = useSelector((cart) => cart.quantity);
+
   const dispatch = useDispatch();
 
   const numbers = useCallback(() => {
@@ -25,7 +26,7 @@ function Nav(props) {
       <SearchBarFilter onSubmit={getValue} />
       <div
         onClick={() => {
-          props.setModalValue((prev) => !prev);
+          props.setModalValue(true);
         }}
         className={classes["cart"]}
       >
