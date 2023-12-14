@@ -1,9 +1,8 @@
 import classes from "./Home.module.css";
 import React, { useCallback, useState, useEffect } from "react";
-import Modal from "../Cart/Modal";
 import ProductsContainer from "../Products/ProductsContainer";
 import Products from "../Products/Products";
-import Nav from "../Nav/Nav";
+
 import { useSelector } from "react-redux";
 // Image Modal
 import ImageBackdrop from "../ImageModal/ImageModal";
@@ -43,7 +42,7 @@ function HomePage() {
   return (
     <div className={classes.container}>
       {modalIsVisible && <ImageBackdrop />}
-      {<Modal />}
+
       <ProductsContainer>
         {!isLoading && <h1 className={classes.loding}>Loading...</h1>}
         {isLoading &&

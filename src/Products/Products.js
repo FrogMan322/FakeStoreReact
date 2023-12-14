@@ -51,7 +51,7 @@ function Products(props) {
             Add to Cart
           </button>
           <button className={classes["add_to_cart_btn"]}>
-            <Link to="/details"> Products Details</Link>
+            <Link to={`/details/${props.id}`}> Products Details</Link>
           </button>
         </div>
       </div>
