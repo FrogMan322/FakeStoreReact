@@ -44,7 +44,6 @@ function HomePage() {
     <div className={classes.container}>
       {modalIsVisible && <ImageBackdrop />}
       {<Modal />}
-      <Nav />
       <ProductsContainer>
         {!isLoading && <h1 className={classes.loding}>Loading...</h1>}
         {isLoading &&

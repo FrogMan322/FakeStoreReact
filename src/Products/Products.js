@@ -2,6 +2,7 @@ import classes from "./Products.module.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { storeItemsActions } from "../Store/store";
+import { Link } from "react-router-dom";
 function Products(props) {
   const [cartItems, setCartItems] = useState([]);
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ function Products(props) {
             Add to Cart
           </button>
           <button className={classes["add_to_cart_btn"]}>
-            Products Detail
+            <Link to="/details"> Products Details</Link>
           </button>
         </div>
       </div>
