@@ -45,8 +45,7 @@ function Details() {
   return (
     <>
       {!isLoading && <h1 className={classes["loading"]}>Loading...</h1>}
-      {isLoading && detailsData}
-      {isLoading && <h1 className={classes["error-status"]}>{error}</h1>}
+      {detailsData}
     </>
   );
 }

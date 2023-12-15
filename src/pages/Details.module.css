@@ -84,12 +84,15 @@ a:visited {
   font-family: "Roboto";
 }
 .error-status {
+  margin: auto;
+  width: 600px;
   padding: 2rem;
   font-size: 3rem;
   border-radius: 3rem;
   margin-top: 15rem;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   animation: color 400ms alternate infinite;
+  text-align: center;
 }
 .loding {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;

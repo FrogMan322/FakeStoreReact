@@ -32,6 +32,7 @@ function Nav(props) {
           Random Store
         </NavLink>
       </h1>
+
       <h1 className={classes["store__name"]}>
         <NavLink
           to={"/comments"}
@@ -42,7 +43,7 @@ function Nav(props) {
           Comments
         </NavLink>
       </h1>
-
+      <h1 className={classes["store__name"]}>SignIn</h1>
       <div
         onClick={() => {
           setCartValue(true);
