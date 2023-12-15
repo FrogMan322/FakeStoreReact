@@ -1,9 +1,8 @@
 import { useCallback, useEffect } from "react";
 import classes from "./Nav.module.css";
-import SearchBarFilter from "./SearchBarFilter";
 import { useSelector, useDispatch } from "react-redux";
 import { storeItemsActions } from "../Store/store";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Nav(props) {
   const dispatch = useDispatch();
@@ -24,12 +23,26 @@ function Nav(props) {
   return (
     <div className={classes.container}>
       <h1 className={classes["store__name"]}>
-        <Link to={"/"}>Random Store</Link>
+        <NavLink
+          to={"/"}
+          className={({ isActive }) => {
+            return isActive ? classes.isVisiting : undefined;
+          }}
+        >
+          Random Store
+        </NavLink>
       </h1>
       <h1 className={classes["store__name"]}>
-        <Link to={"/comments"}>Comments</Link>
+        <NavLink
+          to={"/comments"}
+          className={({ isActive }) => {
+            return isActive ? classes.isVisiting : undefined;
+          }}
+        >
+          Comments
+        </NavLink>
       </h1>
-      <SearchBarFilter />
+
       <div
         onClick={() => {
           setCartValue(true);

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { storeItemsActions } from "../Store/store";
 import { Link } from "react-router-dom";
+
 function Products(props) {
   const [cartItems, setCartItems] = useState([]);
   const dispatch = useDispatch();
@@ -21,37 +22,39 @@ function Products(props) {
   const addToCart = (id) => {
     dispatch(storeItemsActions.addToCart({ items: cartItems, id: id }));
   };
+
   // Geting image data for modal
   const getImage = async (id) => {
     const endpoint = await fetch(`https://fakestoreapi.com/products/${id}`);
     const data = await endpoint.json();
     dispatch(storeItemsActions.getImageValue(data));
   };
+  const { image, data, id, title, price, value } = props;
   return (
-    <div key={props.value} className={classes.wraper}>
-      <div key={props.data} className={classes["product__card"]}>
+    <div key={value} className={classes.wraper}>
+      <div key={data} className={classes["product__card"]}>
         <img
-          src={props.image}
+          src={image}
           alt=""
           onClick={() => {
-            getImage(props.id);
+            getImage(id);
             isVisible(true);
           }}
         />
 
         <div className={classes["product__data"]}>
-          <h1 className={classes["description"]}>{props.title}</h1>
-          <h1 className={classes["price"]}>Price: ${props.price}</h1>
+          <h1 className={classes["description"]}>{title}</h1>
+          <h1 className={classes["price"]}>Price: ${price}</h1>
           <button
             className={classes["add_to_cart_btn"]}
             onClick={() => {
-              addToCart(props.id);
+              addToCart(id);
             }}
           >
             Add to Cart
           </button>
           <button className={classes["add_to_cart_btn"]}>
-            <Link to={`/details/${props.id}`}>Products Details</Link>
+            <Link to={`/details/${id}`}>Products Details</Link>
           </button>
         </div>
       </div>

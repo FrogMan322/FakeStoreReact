@@ -1,8 +1,8 @@
 import classes from "./Home.module.css";
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect, Fragment } from "react";
 import ProductsContainer from "../Products/ProductsContainer";
 import Products from "../Products/Products";
-
+import SearchBarFilter from "../Nav/SearchBarFilter";
 import { useSelector } from "react-redux";
 // Image Modal
 import ImageBackdrop from "../ImageModal/ImageModal";
@@ -40,42 +40,45 @@ function HomePage() {
   }, [fetchUserData]);
 
   return (
-    <div className={classes.container}>
-      {modalIsVisible && <ImageBackdrop />}
+    <>
+      <SearchBarFilter />
+      <div className={classes.container}>
+        {modalIsVisible && <ImageBackdrop />}
 
-      <ProductsContainer>
-        {!isLoading && <h1 className={classes.loding}>Loading...</h1>}
-        {isLoading &&
-          curData.length > 0 &&
-          curData // eslint-disable-next-line
-            .filter((obj) => {
-              const value = filterValue.toLowerCase();
-              if (value === "") {
-                return obj;
-              } else if (
-                obj.title.toLowerCase().includes(value) ||
-                obj.category.toLowerCase().includes(value) ||
-                obj.description.toLowerCase().includes(value)
-              ) {
-                return obj;
-              }
-            })
-            .map((obj) => {
-              return (
-                <Products
-                  title={obj.title}
-                  price={obj.price}
-                  image={obj.image}
-                  key={obj.id}
-                  id={obj.id}
-                />
-              );
-            })}
-        {isLoading && curData.length < 1 && (
-          <h1 className={classes["error-status"]}>{error}</h1>
-        )}
-      </ProductsContainer>
-    </div>
+        <ProductsContainer>
+          {!isLoading && <h1 className={classes.loding}>Loading...</h1>}
+          {isLoading &&
+            curData.length > 0 &&
+            curData // eslint-disable-next-line
+              .filter((obj) => {
+                const value = filterValue.toLowerCase();
+                if (value === "") {
+                  return obj;
+                } else if (
+                  obj.title.toLowerCase().includes(value) ||
+                  obj.category.toLowerCase().includes(value) ||
+                  obj.description.toLowerCase().includes(value)
+                ) {
+                  return obj;
+                }
+              })
+              .map((obj) => {
+                return (
+                  <Products
+                    title={obj.title}
+                    price={obj.price}
+                    image={obj.image}
+                    key={obj.id}
+                    id={obj.id}
+                  />
+                );
+              })}
+          {isLoading && curData.length < 1 && (
+            <h1 className={classes["error-status"]}>{error}</h1>
+          )}
+        </ProductsContainer>
+      </div>
+    </>
   );
 }
 
