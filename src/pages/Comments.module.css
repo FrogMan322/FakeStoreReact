@@ -1,0 +1,30 @@
+.container {
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+.comment__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  width: 60%;
+}
+.comments {
+  border: 1px solid orange;
+  width: 50%;
+  min-height: 250px;
+}
+.comments:nth-child(even) {
+  align-self: flex-start;
+}
+.comments:nth-child(odd) {
+  align-self: flex-end;
+}
+a:visited {
+  color: black;
+}

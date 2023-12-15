@@ -3,6 +3,7 @@ import classes from "./Nav.module.css";
 import SearchBarFilter from "./SearchBarFilter";
 import { useSelector, useDispatch } from "react-redux";
 import { storeItemsActions } from "../Store/store";
+import { Link } from "react-router-dom";
 
 function Nav(props) {
   const dispatch = useDispatch();
@@ -22,7 +23,12 @@ function Nav(props) {
   }, [numbers, cartItems, totalQuantity]);
   return (
     <div className={classes.container}>
-      <h1 className={classes["store__name"]}>Random Store</h1>
+      <h1 className={classes["store__name"]}>
+        <Link to={"/"}>Random Store</Link>
+      </h1>
+      <h1 className={classes["store__name"]}>
+        <Link to={"/comments"}>Comments</Link>
+      </h1>
       <SearchBarFilter />
       <div
         onClick={() => {

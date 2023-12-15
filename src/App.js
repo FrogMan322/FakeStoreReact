@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/Home";
 import RootLayout from "./pages/Root";
 import Details from "./pages/Details";
-
+import Comments from "./pages/Comments";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -10,6 +10,7 @@ const router = createBrowserRouter([
     children: [
       { path: "", element: <HomePage /> },
       { path: "details/:prodId", element: <Details /> },
+      { path: "/comments", element: <Comments /> },
     ],
   },
 ]);
