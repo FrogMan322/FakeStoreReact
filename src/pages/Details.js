@@ -18,12 +18,12 @@ function Details() {
   return (
     <div className={classes.container}>
       <div className={classes.product}>
-        <h1>{title}</h1>
+        <h1 className={classes.title}>{title}</h1>
         <div className={classes["imgContainer"]}>
           <img src={image} alt="" />
         </div>
-        <h1>{description}</h1>
-        <h1>${price}</h1>
+        <h1 className={classes.description}>{description}</h1>
+        <h1 className={classes.price}>${price}</h1>
         <button>
           <Link to="/">Go Back</Link>
         </button>
