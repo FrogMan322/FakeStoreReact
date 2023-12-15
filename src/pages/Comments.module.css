@@ -25,6 +25,9 @@
 .comments:nth-child(odd) {
   align-self: flex-end;
 }
+a {
+  color: black;
+}
 a:visited {
   color: black;
 }
