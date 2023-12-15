@@ -53,9 +53,9 @@ function Products(props) {
           >
             Add to Cart
           </button>
-          <button className={classes["add_to_cart_btn"]}>
+          <div className={classes["add_to_cart_btn"]}>
             <Link to={`/details/${id}`}>Products Details</Link>
-          </button>
+          </div>
         </div>
       </div>
     </div>

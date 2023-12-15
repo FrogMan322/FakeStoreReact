@@ -83,10 +83,6 @@
 .add_to_cart_btn:hover {
   background-color: #14d966;
 }
-a {
-  color: black;
-}
-
-a:visited {
-  color: black;
+.add_to_cart_btn a:visited {
+  color: white;
 }

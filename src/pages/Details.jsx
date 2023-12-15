@@ -8,14 +8,16 @@ function Details() {
   const [error, setError] = useState(null);
   const params = useParams();
   const getProduct = useCallback(async () => {
+    const id = params.prodId;
     try {
       setIsLoading(false);
       setError(null);
-      const id = params.prodId;
+
       const endpoint = await fetch(`https://fakestoreapi.com/products/${id}`);
       if (!endpoint.ok) {
         throw new Error("Failed to load details try later");
       }
+
       const data = await endpoint.json();
       setDetail(data);
     } catch (error) {
@@ -23,9 +25,11 @@ function Details() {
     }
     setIsLoading(true);
   }, [params]);
+
   useEffect(() => {
     getProduct();
   }, [getProduct]);
+
   const { image, description, price, title } = detail;
   const detailsData = (
     <div className={classes.container}>
@@ -36,16 +40,17 @@ function Details() {
         </div>
         <h1 className={classes.description}>{description}</h1>
         <h1 className={classes.price}>${price}</h1>
-        <button>
+        <div className={classes.product__details}>
           <Link to="/">Go Back</Link>
-        </button>
+        </div>
       </div>
     </div>
   );
   return (
     <>
       {!isLoading && <h1 className={classes["loading"]}>Loading...</h1>}
-      {detailsData}
+      {isLoading && detailsData}
+      {isLoading && <h1 className={classes["error-status"]}>{error}</h1>}
     </>
   );
 }

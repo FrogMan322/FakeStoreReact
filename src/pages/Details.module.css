@@ -27,7 +27,7 @@
   background-color: white;
 }
 
-.product > button {
+.product__details {
   appearance: none;
   backface-visibility: hidden;
   background-color: #27ae60;
@@ -57,6 +57,9 @@
   white-space: nowrap;
   margin: 3px;
 }
+.product__details:hover {
+  background-color: #14d966;
+}
 a {
   text-decoration: none;
 }
@@ -64,6 +67,9 @@ a:focus {
   background-color: none;
 }
 a:visited {
+  color: white;
+}
+.product__details a:visited {
   color: white;
 }
 .price {
