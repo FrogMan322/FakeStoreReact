@@ -20,7 +20,7 @@ function BackDrop(props) {
     </div>
   );
 }
-function ModalImage(props) {
+function ModalImage() {
   const imageValue = useSelector((state) => state.imageValue);
   return (
     <div className={classes.imageContainer}>
@@ -28,7 +28,7 @@ function ModalImage(props) {
     </div>
   );
 }
-function ImageBackdrop(props) {
+function ImageBackdrop() {
   return (
     <Fragment>
       {ReactDOM.createPortal(

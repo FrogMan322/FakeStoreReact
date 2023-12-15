@@ -43,7 +43,16 @@ function Nav(props) {
           Comments
         </NavLink>
       </h1>
-      <h1 className={classes["store__name"]}>SignIn</h1>
+      <h1 className={classes["store__name"]}>
+        <NavLink
+          to={"/signup"}
+          className={({ isActive }) => {
+            return isActive ? classes.isVisiting : undefined;
+          }}
+        >
+          SignUp
+        </NavLink>
+      </h1>
       <div
         onClick={() => {
           setCartValue(true);

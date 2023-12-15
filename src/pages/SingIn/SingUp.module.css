@@ -1,0 +1,23 @@
+.container {
+  min-height: 35rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+}
+.form__container label {
+  font-family: "Roboto";
+  font-size: 1.5rem;
+}
+
+.form__container input {
+  width: 300px;
+  text-align: center;
+  font-size: 1.2rem;
+}
