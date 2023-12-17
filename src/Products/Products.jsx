@@ -1,26 +1,20 @@
 import classes from "./Products.module.css";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { storeItemsActions } from "../Store/store";
 import { Link } from "react-router-dom";
-
+import useHttp from "../customHook/useHttp";
 function Products(props) {
-  const [cartItems, setCartItems] = useState([]);
+  const { items } = useHttp("https://fakestoreapi.com/products");
+
   const dispatch = useDispatch();
 
   const isVisible = (value) => {
     dispatch(storeItemsActions.modalVisible(value));
   };
-  useEffect(() => {
-    const setCart = async () => {
-      const endpoint = await fetch("https://fakestoreapi.com/products");
-      const data = await endpoint.json();
-      setCartItems(data);
-    };
-    setCart();
-  }, [cartItems]);
+
   const addToCart = (id) => {
-    dispatch(storeItemsActions.addToCart({ items: cartItems, id: id }));
+    dispatch(storeItemsActions.addToCart({ items: items, id: id }));
   };
 
   // Geting image data for modal
