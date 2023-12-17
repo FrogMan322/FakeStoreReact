@@ -1,43 +1,18 @@
 import classes from "./Home.module.css";
-import React, { useCallback, useState, useEffect, Fragment } from "react";
+import React from "react";
 import ProductsContainer from "../Products/ProductsContainer";
 import Products from "../Products/Products";
 import SearchBarFilter from "../Nav/SearchBarFilter";
 import { useSelector } from "react-redux";
-// Image Modal
+import useHttp from "../customHook/useHttp";
 import ImageBackdrop from "../ImageModal/ImageModal";
 
 function HomePage() {
-  // Image Modal
   const modalIsVisible = useSelector((state) => state.modalVisible);
-
   const filterValue = useSelector((state) => state.searchValue);
-
-  // Rendering on screen
-  const [curData, setCurData] = useState([]);
-  // error handlig states
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const fetchUserData = useCallback(async () => {
-    try {
-      setIsLoading(false);
-      setError(null);
-      const endpoint = await fetch("https://fakestoreapi.com/products");
-      if (!endpoint.ok) {
-        throw new Error("FAILD TO LOAD PRODUCTS TRY LATER");
-      }
-      const data = await endpoint.json();
-      setCurData(data);
-    } catch (error) {
-      setError(error.message);
-    }
-    setIsLoading(true);
-  }, []);
-
-  useEffect(() => {
-    fetchUserData();
-  }, [fetchUserData]);
+  const { error, items, isLoading } = useHttp(
+    "https://fakestoreapi.com/products"
+  );
 
   return (
     <>
@@ -48,8 +23,8 @@ function HomePage() {
         <ProductsContainer>
           {!isLoading && <h1 className={classes.loding}>Loading...</h1>}
           {isLoading &&
-            curData.length > 0 &&
-            curData // eslint-disable-next-line
+            items.length > 0 &&
+            items // eslint-disable-next-line
               .filter((obj) => {
                 const value = filterValue.toLowerCase();
                 if (value === "") {
@@ -73,9 +48,7 @@ function HomePage() {
                   />
                 );
               })}
-          {isLoading && curData.length < 1 && (
-            <h1 className={classes["error-status"]}>{error}</h1>
-          )}
+          {isLoading && <h1 className={classes["error-status"]}>{error}</h1>}
         </ProductsContainer>
       </div>
     </>
