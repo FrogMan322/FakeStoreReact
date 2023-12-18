@@ -10,16 +10,15 @@ function Nav() {
     dispatch(storeItemsActions.slideCart(value));
   };
 
-  const cartItems = useSelector((cart) => cart.cartItems);
   const totalQuantity = useSelector((cart) => cart.quantity);
 
   const numbers = useCallback(() => {
-    dispatch(storeItemsActions.amount(cartItems)); // eslint-disable-next-line
-  }, [totalQuantity, cartItems, dispatch]);
+    dispatch(storeItemsActions.amount()); // eslint-disable-next-line
+  }, [totalQuantity, dispatch]);
 
   useEffect(() => {
     numbers();
-  }, [numbers, cartItems, totalQuantity]);
+  }, [numbers, totalQuantity]);
   return (
     <div className={classes.container}>
       <h1 className={classes["store__name"]}>

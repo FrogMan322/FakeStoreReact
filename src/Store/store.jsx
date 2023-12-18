@@ -69,7 +69,7 @@ const storeItems = createSlice({
       state.cartItems = [];
     },
     amount: (state, action) => {
-      const totalSum = action.payload;
+      const totalSum = state.cartItems;
       const totalQuantity = totalSum
         .map((item) => item.quantity)
         .reduce((ac, cv) => ac + cv, 0);
