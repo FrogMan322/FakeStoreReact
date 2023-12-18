@@ -24,6 +24,7 @@ function ModalOverlay(props) {
 function Cart(props) {
   const dispatch = useDispatch();
   const cart = useSelector((cart) => cart.cartItems);
+
   const totalMoney = useSelector((cart) => cart.totalAmount);
   const showCart = useSelector((state) => state.showCart);
   const [isVisible, setIsVisible] = useState(false);

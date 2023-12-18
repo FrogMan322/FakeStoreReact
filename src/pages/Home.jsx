@@ -1,5 +1,5 @@
 import classes from "./Home.module.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductsContainer from "../Products/ProductsContainer";
 import Products from "../Products/Products";
 import SearchBarFilter from "../Nav/SearchBarFilter";

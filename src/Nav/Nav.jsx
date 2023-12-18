@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { storeItemsActions } from "../Store/store";
 import { NavLink } from "react-router-dom";
 
-function Nav(props) {
+function Nav() {
   const dispatch = useDispatch();
   const setCartValue = (value) => {
     dispatch(storeItemsActions.slideCart(value));
