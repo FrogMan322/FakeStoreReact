@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback } from "react";
+import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import classes from "./ModalImage.module.css";
 import { useDispatch, useSelector } from "react-redux";
