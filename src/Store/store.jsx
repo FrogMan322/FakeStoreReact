@@ -68,7 +68,17 @@ const storeItems = createSlice({
     cleareCart: (state) => {
       state.cartItems = [];
     },
-    amount: (state) => {},
+    amount: (state, action) => {
+      const totalSum = action.payload;
+      const totalQuantity = totalSum
+        .map((item) => item.quantity)
+        .reduce((ac, cv) => ac + cv, 0);
+      const totalPrice = totalSum
+        .map((item) => item.price)
+        .reduce((ac, cv) => ac + cv, 0);
+      state.quantity = totalQuantity;
+      state.totalAmount = totalPrice * totalQuantity;
+    },
     modalVisible: (state, action) => {
       state.modalVisible = action.payload;
     },

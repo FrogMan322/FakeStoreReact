@@ -5,20 +5,20 @@ import { storeItemsActions } from "../Store/store";
 import { NavLink } from "react-router-dom";
 
 function Nav() {
-  const dispatch = useDispatch();
-  const setCartValue = (value) => {
-    dispatch(storeItemsActions.slideCart(value));
-  };
-
+  const cartItems = useSelector((cart) => cart.cartItems);
   const totalQuantity = useSelector((cart) => cart.quantity);
+  const dispatch = useDispatch();
 
   const numbers = useCallback(() => {
-    dispatch(storeItemsActions.amount()); // eslint-disable-next-line
-  }, [totalQuantity, dispatch]);
+    dispatch(storeItemsActions.amount(cartItems)); // eslint-disable-next-line
+  }, [totalQuantity, cartItems, dispatch]);
 
   useEffect(() => {
     numbers();
   }, [numbers, totalQuantity]);
+  function setCartValue(value) {
+    dispatch(storeItemsActions.slideCart(value));
+  }
   return (
     <div className={classes.container}>
       <h1 className={classes["store__name"]}>
