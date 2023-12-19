@@ -7,8 +7,8 @@ const initialState = {
   isVisible: false,
   notification: null,
   modalVisible: false,
-  imageValue: "",
   showCart: false,
+  imageValue: "",
   searchValue: "",
 };
 
