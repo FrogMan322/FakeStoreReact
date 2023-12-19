@@ -68,28 +68,11 @@ const storeItems = createSlice({
     cleareCart: (state) => {
       state.cartItems = [];
     },
-    amount: (state, action) => {
-      const totalSum = state.cartItems;
-      const totalQuantity = totalSum
-        .map((item) => item.quantity)
-        .reduce((ac, cv) => ac + cv, 0);
-      const totalPrice = totalSum
-        .map((item) => item.price)
-        .reduce((ac, cv) => ac + cv, 0);
-      state.quantity = totalQuantity;
-      state.totalAmount = totalPrice * totalQuantity;
-    },
+    amount: (state) => {},
     modalVisible: (state, action) => {
       state.modalVisible = action.payload;
     },
-    //! Finish this update
-    showNotification: (state, action) => {
-      state.notification = {
-        status: action.payload.status,
-        message: action.payload.message,
-        title: action.payload.title,
-      };
-    },
+
     getImageValue: (state, action) => {
       state.imageValue = action.payload.image;
     },

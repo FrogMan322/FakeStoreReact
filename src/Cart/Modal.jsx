@@ -21,11 +21,10 @@ function ModalOverlay(props) {
     </div>
   );
 }
-function Cart(props) {
+function Cart() {
   const dispatch = useDispatch();
-  const cart = useSelector((cart) => cart.cartItems);
-
-  const totalMoney = useSelector((cart) => cart.totalAmount);
+  const cart = useSelector((state) => state.cartItems);
+  const totalMoney = useSelector((state) => state.totalAmount);
   const showCart = useSelector((state) => state.showCart);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -117,24 +116,10 @@ function Modal(props) {
   return (
     <Fragment>
       {ReactDOM.createPortal(
-        <ModalOverlay
-          setModalValue={props.setModalValue}
-          modalValue={props.modalValue}
-          onClose={props.onClose}
-          showModal={props.showBar}
-        />,
+        <ModalOverlay />,
         document.getElementById("modal__overlay")
       )}
-      {ReactDOM.createPortal(
-        <Cart
-          setModalValue={props.setModalValue}
-          modalValue={props.modalValue}
-          deleteItem={props.deleteItem}
-          onClose={props.onClose}
-          updateCart={props.cartData}
-        />,
-        document.getElementById("modal__cart")
-      )}
+      {ReactDOM.createPortal(<Cart />, document.getElementById("modal__cart"))}
     </Fragment>
   );
 }
