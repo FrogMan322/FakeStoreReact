@@ -9,6 +9,9 @@
 
 .imageContainer {
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 600;
   width: 900px;
   height: 900px;

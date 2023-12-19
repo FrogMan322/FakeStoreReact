@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useCallback } from "react";
 import ReactDOM from "react-dom";
 import classes from "./ModalImage.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,8 +7,9 @@ function BackDrop(props) {
   const dispatch = useDispatch();
   const isVisible = (value) => {
     dispatch(storeItemsActions.modalVisible(value));
-    dispatch(storeItemsActions.getImageValue(""));
+    dispatch(storeItemsActions.getImageValue({ id: undefined, data: [] }));
   };
+
   return (
     <div
       onClick={() => {

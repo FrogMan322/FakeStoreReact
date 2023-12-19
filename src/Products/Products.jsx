@@ -19,9 +19,9 @@ function Products(props) {
 
   // Geting image data for modal
   const getImage = async (id) => {
-    const endpoint = await fetch(`https://fakestoreapi.com/products/${id}`);
+    const endpoint = await fetch(`https://fakestoreapi.com/products/`);
     const data = await endpoint.json();
-    dispatch(storeItemsActions.getImageValue(data));
+    dispatch(storeItemsActions.getImageValue({ data, id }));
   };
   const { image, data, id, title, price, value } = props;
   return (

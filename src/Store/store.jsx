@@ -10,6 +10,7 @@ const initialState = {
   showCart: false,
   imageValue: "",
   searchValue: "",
+  chagePicture: null,
 };
 
 const storeItems = createSlice({
@@ -84,8 +85,23 @@ const storeItems = createSlice({
     },
 
     getImageValue: (state, action) => {
-      state.imageValue = action.payload.image;
+      const id = action.payload.id;
+
+      if (id === undefined) {
+        state.imageValue = "";
+        state.chagePicture = null;
+        return;
+      }
+      const data = action.payload.data;
+
+      const imgIndx = data.findIndex((el) => {
+        return el.id === id;
+      });
+
+      state.chagePicture = imgIndx;
+      state.imageValue = data[state.chagePicture].image;
     },
+
     slideCart: (state, action) => {
       state.showCart = action.payload;
     },
