@@ -21,7 +21,7 @@ function useHttp(api) {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
-  return { error, items: curData, isLoading };
+  return { error, items: curData, isLoading: isLoading };
 }
 
 export default useHttp;

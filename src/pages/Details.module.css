@@ -105,6 +105,9 @@ a:visited {
   margin-top: 10rem;
   font-size: 5rem;
 }
+.isError {
+  display: none;
+}
 @keyframes color {
   0% {
     background-color: rgba(255, 0, 0, 0.1);

@@ -1,38 +1,12 @@
-import { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { json, useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
 import classes from "./Details.module.css";
 function Details() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [detail, setDetail] = useState({});
-  const [error, setError] = useState(null);
-  const params = useParams();
-  const getProduct = useCallback(async () => {
-    const id = params.prodId;
-    try {
-      setIsLoading(false);
-      setError(null);
+  const event = useLoaderData();
 
-      const endpoint = await fetch(`https://fakestoreapi.com/products/${id}`);
-      if (!endpoint.ok) {
-        throw new Error("Failed to load details try later");
-      }
-
-      const data = await endpoint.json();
-      setDetail(data);
-    } catch (error) {
-      setError(error.message);
-    }
-    setIsLoading(true);
-  }, [params]);
-
-  useEffect(() => {
-    getProduct();
-  }, [getProduct]);
-
-  const { image, description, price, title } = detail;
+  const { image, description, price, title } = event;
   const detailsData = (
-    <div className={classes.container}>
+    <div className={`${classes.container}`}>
       <div className={classes.product}>
         <h1 className={classes.title}>{title}</h1>
         <div className={classes["imgContainer"]}>
@@ -46,13 +20,18 @@ function Details() {
       </div>
     </div>
   );
-  return (
-    <>
-      {!isLoading && <h1 className={classes["loading"]}>Loading...</h1>}
-      {isLoading && detailsData}
-      {isLoading && <h1 className={classes["error-status"]}>{error}</h1>}
-    </>
-  );
-}
 
+  return detailsData;
+}
 export default Details;
+
+export async function getProduct({ params }) {
+  const id = params.prodId;
+  const endpoint = await fetch(`https://fakestoreapi.com/products/${id}`);
+
+  if (!endpoint.ok) {
+    throw json({ message: "Could not fetch product" }, { status: 500 });
+  } else {
+    return endpoint;
+  }
+}

@@ -1,18 +1,20 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/Home";
 import RootLayout from "./pages/Root";
-import Details from "./pages/Details";
+import Details, { getProduct } from "./pages/Details";
 import Comments from "./pages/Comments";
 import SingUp from "./pages/SingIn/SingUp";
+import ErrorPage from "./pages/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <ErrorPage />,
     children: [
-      { path: "", element: <HomePage /> },
-      { path: "details/:prodId", element: <Details /> },
-      { path: "/comments", element: <Comments /> },
-      { path: "/signup", element: <SingUp /> },
+      { index: true, element: <HomePage /> },
+      { path: "details/:prodId", element: <Details />, loader: getProduct },
+      { path: "comments", element: <Comments /> },
+      { path: "signup", element: <SingUp /> },
     ],
   },
 ]);

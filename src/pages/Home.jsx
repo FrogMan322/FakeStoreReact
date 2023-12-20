@@ -48,7 +48,9 @@ function HomePage() {
                   />
                 );
               })}
-          {isLoading && <h1 className={classes["error-status"]}>{error}</h1>}
+          {!isLoading && items.length > 0 && (
+            <h1 className={classes["error-status"]}>{error}</h1>
+          )}
         </ProductsContainer>
       </div>
     </>
