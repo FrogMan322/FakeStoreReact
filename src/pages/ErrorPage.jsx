@@ -6,7 +6,6 @@ function ErrorPage() {
   let message = "ERROR PAGE NOT FOUND!!!";
 
   if (error.status === 500) {
-    console.log(error);
     message = error.data.message;
   }
   return (
