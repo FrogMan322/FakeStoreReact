@@ -5,7 +5,7 @@ import { storeItemsActions } from "../Store/store";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import useHttp from "../customHook/useHttp";
-import { type } from "@testing-library/user-event/dist/type";
+
 function Products(props) {
   const { items } = useHttp("https://fakestoreapi.com/products");
 
