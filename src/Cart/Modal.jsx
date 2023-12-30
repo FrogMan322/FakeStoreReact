@@ -4,7 +4,7 @@ import classes from "./Modal.module.css";
 import * as Icon from "react-bootstrap-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { storeItemsActions } from "../Store/store";
-
+import { motion } from "framer-motion";
 function ModalOverlay(props) {
   const dispatch = useDispatch();
   const showCart = useSelector((state) => state.showCart);
@@ -25,7 +25,8 @@ function Cart() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cartItems);
   const totalMoney = useSelector((state) => state.totalAmount);
-  const showCart = useSelector((state) => state.showCart);
+  const showCart = useSelector((state) => state.showCart); // variabla za animaciju
+
   const [isVisible, setIsVisible] = useState(false);
 
   const setValueVisible = useCallback(() => {
@@ -40,10 +41,10 @@ function Cart() {
   }, [isVisible, setValueVisible]);
 
   return (
-    <div
-      className={`${classes[`cart__container`]} ${
-        showCart ? classes[`show`] : ""
-      }`}
+    <motion.div
+      className={classes[`cart__container`]}
+      animate={{ x: `${showCart ? 0 : -100}%` }}
+      transition={{ ease: "linear", duration: 0.15 }}
     >
       <h1 className={classes.total}>
         Total Value: {`$${totalMoney.toFixed(2)}`}
@@ -109,7 +110,7 @@ function Cart() {
           </div>
         );
       })}
-    </div>
+    </motion.div>
   );
 }
 function Modal(props) {

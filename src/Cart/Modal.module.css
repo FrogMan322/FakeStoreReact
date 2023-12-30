@@ -21,11 +21,8 @@
   z-index: 150;
   gap: 15px;
   transform: translate(-100%);
-  transition: transform ease-in 200ms;
 }
-.show {
-  transform: translate(0%);
-}
+
 .modal__display {
   display: block;
 }
