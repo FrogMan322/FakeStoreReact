@@ -16,7 +16,6 @@ function Products(props) {
   const addToCart = (id) => {
     dispatch(storeItemsActions.addToCart({ items: items, id: id }));
   };
-
   // Geting image data for modal
   const getImage = async (id) => {
     const endpoint = await fetch(`https://fakestoreapi.com/products/`);
