@@ -1,5 +1,6 @@
 import { json, useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import classes from "./Details.module.css";
 function Details() {
   const event = useLoaderData();
@@ -14,9 +15,13 @@ function Details() {
         </div>
         <h1 className={classes.description}>{description}</h1>
         <h1 className={classes.price}>${price}</h1>
-        <div className={classes.product__details}>
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 0.05, type: "Tween" }}
+          className={classes.product__details}
+        >
           <Link to="/">Go Back</Link>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

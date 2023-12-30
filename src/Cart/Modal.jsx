@@ -98,14 +98,16 @@ function Cart() {
                 </h1>
               </div>
               <h1>Price: ${(obj.price * obj.quantity).toFixed(2)}</h1>
-              <button
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.05, type: "Tween" }}
                 className={classes["delete__btn"]}
                 onClick={() => {
                   dispatch(storeItemsActions.deleteItem(obj.id));
                 }}
               >
                 Delete
-              </button>
+              </motion.button>
             </div>
           </div>
         );

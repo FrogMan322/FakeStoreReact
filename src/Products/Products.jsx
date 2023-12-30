@@ -42,7 +42,7 @@ function Products(props) {
           <h1 className={classes["price"]}>Price: ${price}</h1>
           <motion.button
             whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.1, type: "Tween", stiffness: 10 }}
+            transition={{ duration: 0.05, type: "Tween" }}
             className={classes["add_to_cart_btn"]}
             onClick={() => {
               addToCart(id);
@@ -52,7 +52,7 @@ function Products(props) {
           </motion.button>
           <motion.div
             whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.1, type: "Tween", stiffness: 10 }}
+            transition={{ duration: 0.05, type: "Tween" }}
             className={classes["add_to_cart_btn"]}
           >
             <Link to={`/details/${id}`}>Products Details</Link>
