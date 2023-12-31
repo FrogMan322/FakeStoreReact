@@ -15,7 +15,7 @@ function ModalOverlay(props) {
       }}
       className={`${classes[`modal__container`]} ${
         showCart ? classes[`modal__display`] : ""
-      }`}
+      }  `}
     >
       {props.children}
     </div>
