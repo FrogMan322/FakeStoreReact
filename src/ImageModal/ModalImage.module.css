@@ -13,13 +13,14 @@
 }
 
 .imageContainer {
-  position: fixed;
   z-index: 600;
   width: var(--image--width);
   height: var(--image--height);
-  top: 50%;
+  position: fixed;
   left: 50%;
-  transform: translate(-50%, -50%);
+  top: 50%;
+  margin-left: calc(var(--image--height) / -2);
+  margin-top: calc(var(--image--height) / -2);
 }
 .imageContainerData {
   height: 100%;

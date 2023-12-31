@@ -3,35 +3,48 @@ import ReactDOM from "react-dom";
 import classes from "./ModalImage.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { storeItemsActions } from "../Store/store";
+import { motion } from "framer-motion";
 
 function BackDrop(props) {
   const dispatch = useDispatch();
   const isVisible = (value) => {
     dispatch(storeItemsActions.modalVisible(value));
-    dispatch(storeItemsActions.getImageValue({ id: undefined, data: [] }));
+    setTimeout(() => {
+      dispatch(storeItemsActions.getImageValue({ id: undefined, data: [] }));
+    }, 500);
   };
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.4 }}
       onClick={() => {
         isVisible(false);
       }}
       className={classes.container}
     >
       {props.children}
-    </div>
+    </motion.div>
   );
 }
 function ModalImage() {
   const imageValue = useSelector((state) => state.imageValue);
   return (
-    <div className={classes.imageContainer}>
+    <motion.div
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 100 }}
+      transition={{ duration: 0.4 }}
+      className={classes.imageContainer}
+    >
       <img
         className={classes["imageContainerData"]}
         src={imageValue}
         alt="product"
       />
-    </div>
+    </motion.div>
   );
 }
 function ImageBackdrop() {

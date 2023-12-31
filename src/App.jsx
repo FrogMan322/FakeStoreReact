@@ -5,6 +5,7 @@ import Details, { getProduct } from "./pages/Details";
 import Comments from "./pages/Comments";
 import SingUp from "./pages/SingIn/SingUp";
 import ErrorPage from "./pages/ErrorPage";
+
 const router = createBrowserRouter([
   {
     path: "/",

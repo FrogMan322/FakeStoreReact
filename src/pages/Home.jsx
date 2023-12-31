@@ -6,7 +6,7 @@ import SearchBarFilter from "../Nav/SearchBarFilter";
 import { useSelector } from "react-redux";
 import useHttp from "../customHook/useHttp";
 import ImageBackdrop from "../ImageModal/ImageModal";
-
+import { AnimatePresence } from "framer-motion";
 function HomePage() {
   const modalIsVisible = useSelector((state) => state.modalVisible);
   const filterValue = useSelector((state) => state.searchValue);
@@ -18,8 +18,7 @@ function HomePage() {
     <>
       <SearchBarFilter />
       <div className={classes.container}>
-        {modalIsVisible && <ImageBackdrop />}
-
+        <AnimatePresence>{modalIsVisible && <ImageBackdrop />}</AnimatePresence>
         <ProductsContainer>
           {!isLoading && <h1 className={classes.loding}>Loading...</h1>}
           {isLoading &&
