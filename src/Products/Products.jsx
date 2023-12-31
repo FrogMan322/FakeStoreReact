@@ -26,7 +26,15 @@ function Products(props) {
   };
   const { image, data, id, title, price, value } = props;
   return (
-    <div key={value} className={classes.wraper}>
+    <motion.div
+      whileHover={{
+        scale: 1.05,
+        rotate: 5,
+        margin: 30,
+      }}
+      key={value}
+      className={classes.wraper}
+    >
       <div key={data} className={classes["product__card"]}>
         <img
           src={image}
@@ -59,7 +67,7 @@ function Products(props) {
           </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
