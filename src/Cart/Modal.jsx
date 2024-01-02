@@ -1,4 +1,4 @@
-import ReactDOM from "react-dom";
+import { createPortal } from "react-dom";
 import React, { Fragment, useCallback, useEffect, useState } from "react";
 import classes from "./Modal.module.css";
 import * as Icon from "react-bootstrap-icons";
@@ -118,11 +118,11 @@ function Cart() {
 function Modal(props) {
   return (
     <Fragment>
-      {ReactDOM.createPortal(
+      {createPortal(
         <ModalOverlay />,
         document.getElementById("modal__overlay")
       )}
-      {ReactDOM.createPortal(<Cart />, document.getElementById("modal__cart"))}
+      {createPortal(<Cart />, document.getElementById("modal__cart"))}
     </Fragment>
   );
 }
