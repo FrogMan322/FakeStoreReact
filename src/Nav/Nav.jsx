@@ -3,7 +3,7 @@ import classes from "./Nav.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { storeItemsActions } from "../Store/store";
 import { NavLink } from "react-router-dom";
-
+import { motion } from "framer-motion";
 function Nav() {
   const cartItems = useSelector((cart) => cart.cartItems);
   const totalQuantity = useSelector((cart) => cart.quantity);
@@ -52,7 +52,12 @@ function Nav() {
           SignUp
         </NavLink>
       </h1>
-      <div
+      <motion.div
+        whileHover={{
+          scale: 1.4,
+          rotate: -10,
+        }}
+        transition={{ type: "spring", duration: 0.4 }}
         onClick={() => {
           setCartValue(true);
         }}
@@ -60,7 +65,7 @@ function Nav() {
       >
         <i className="bi bi-cart"></i>
         <p className={classes["cart__number"]}>{totalQuantity}</p>
-      </div>
+      </motion.div>
     </div>
   );
 }
