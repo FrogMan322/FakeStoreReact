@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/Home";
+
 import RootLayout from "./pages/Root";
 import Details, { getProduct } from "./pages/Details";
 import Comments from "./pages/Comments";
