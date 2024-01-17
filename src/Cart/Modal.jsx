@@ -5,6 +5,7 @@ import * as Icon from "react-bootstrap-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { storeItemsActions } from "../Store/store";
 import { motion } from "framer-motion";
+
 function ModalOverlay(props) {
   const dispatch = useDispatch();
   const showCart = useSelector((state) => state.showCart);
@@ -71,47 +72,52 @@ function Cart() {
           Checkout
         </button>
       )}
-      {cart.map((obj, idx) => {
-        return (
-          <div key={idx} className={classes["product__container"]}>
-            <img src={obj.image} alt="" />
-            <div className={classes["cart__data"]}>
-              <div className={classes["quantity__container"]}>
-                <h1
-                  className={classes.numbersCart}
+
+      <motion.ul>
+        {cart.map((obj, idx) => {
+          return (
+            <motion.li key={idx} className={classes["product__container"]}>
+              <img src={obj.image} alt="" />
+              <div className={classes["cart__data"]}>
+                <div className={classes["quantity__container"]}>
+                  <h1
+                    className={classes.numbersCart}
+                    onClick={() => {
+                      dispatch(storeItemsActions.decriment(obj.id));
+                    }}
+                  >
+                    {" "}
+                    <Icon.FileMinus />{" "}
+                  </h1>
+                  <h1 className={classes.numbersCart}>
+                    Quantity:{obj.quantity}
+                  </h1>
+                  <h1
+                    className={classes.numbersCart}
+                    onClick={() => {
+                      dispatch(storeItemsActions.increment(obj.id));
+                    }}
+                  >
+                    {" "}
+                    <Icon.FilePlus />{" "}
+                  </h1>
+                </div>
+                <h1>Price: ${(obj.price * obj.quantity).toFixed(2)}</h1>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.05, type: "Tween" }}
+                  className={classes["delete__btn"]}
                   onClick={() => {
-                    dispatch(storeItemsActions.decriment(obj.id));
+                    dispatch(storeItemsActions.deleteItem(obj.id));
                   }}
                 >
-                  {" "}
-                  <Icon.FileMinus />{" "}
-                </h1>
-                <h1 className={classes.numbersCart}>Quantity:{obj.quantity}</h1>
-                <h1
-                  className={classes.numbersCart}
-                  onClick={() => {
-                    dispatch(storeItemsActions.increment(obj.id));
-                  }}
-                >
-                  {" "}
-                  <Icon.FilePlus />{" "}
-                </h1>
+                  Delete
+                </motion.button>
               </div>
-              <h1>Price: ${(obj.price * obj.quantity).toFixed(2)}</h1>
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.05, type: "Tween" }}
-                className={classes["delete__btn"]}
-                onClick={() => {
-                  dispatch(storeItemsActions.deleteItem(obj.id));
-                }}
-              >
-                Delete
-              </motion.button>
-            </div>
-          </div>
-        );
-      })}
+            </motion.li>
+          );
+        })}
+      </motion.ul>
     </motion.div>
   );
 }
