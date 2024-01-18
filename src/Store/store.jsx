@@ -112,6 +112,12 @@ const storeItems = createSlice({
     getCheckoutItems(state, action) {
       state.checkout = state.cartItems;
     },
+    deleteCheckoutItem(state, action) {
+      // Zavrsi kasnije brisanje itama iz checkout
+      const itemId = action.id;
+      const idx = state.checkout.findIndex((item) => item.id === itemId);
+      state.checkout.splice(idx, 1);
+    },
   },
 });
 const store = configureStore({ reducer: storeItems.reducer });

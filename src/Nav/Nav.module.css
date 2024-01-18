@@ -7,6 +7,12 @@
   align-items: center;
   justify-content: space-between;
 }
+.container a {
+  color: black;
+}
+.container a:visited {
+  color: black;
+}
 .store__name {
   cursor: pointer;
   font-size: 3rem;

@@ -70,8 +70,6 @@ function Cart() {
         <button
           className={classes[`checkout__cart`]}
           onClick={() => {
-            // !!ovde ubaci varijablu za cekout
-
             dispatch(storeItemsActions.getCheckoutItems());
             dispatch(storeItemsActions.cleareCart());
             navigate("/checkout");
