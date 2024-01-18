@@ -5,10 +5,12 @@ import * as Icon from "react-bootstrap-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { storeItemsActions } from "../Store/store";
 import { motion } from "framer-motion";
-
+import { useNavigate } from "react-router-dom";
 function ModalOverlay(props) {
   const dispatch = useDispatch();
+
   const showCart = useSelector((state) => state.showCart);
+
   return (
     <div
       onClick={() => {
@@ -24,6 +26,7 @@ function ModalOverlay(props) {
 }
 function Cart() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const cart = useSelector((state) => state.cartItems);
   const totalMoney = useSelector((state) => state.totalAmount);
   const showCart = useSelector((state) => state.showCart); // variabla za animaciju
@@ -67,7 +70,11 @@ function Cart() {
         <button
           className={classes[`checkout__cart`]}
           onClick={() => {
-            alert("Routes not added. Till next time.");
+            // !!ovde ubaci varijablu za cekout
+
+            dispatch(storeItemsActions.getCheckoutItems());
+            dispatch(storeItemsActions.cleareCart());
+            navigate("/checkout");
           }}
         >
           Checkout

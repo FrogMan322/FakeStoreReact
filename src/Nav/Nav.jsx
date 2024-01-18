@@ -39,12 +39,12 @@ function Nav() {
 
       <h1 className={classes["store__name"]}>
         <NavLink
-          to={"/comments"}
+          to={"/checkout"}
           className={({ isActive }) => {
             return isActive ? classes.isVisiting : undefined;
           }}
         >
-          Comments
+          Checkout
         </NavLink>
       </h1>
       <h1 className={classes["store__name"]}>

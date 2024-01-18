@@ -3,6 +3,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 const initialState = {
   quantity: 0,
   cartItems: [],
+  checkout: [],
   totalAmount: 0,
   isVisible: false,
   notification: null,
@@ -107,6 +108,9 @@ const storeItems = createSlice({
     },
     searchValueForm: (state, action) => {
       state.searchValue = action.payload;
+    },
+    getCheckoutItems(state, action) {
+      state.checkout = state.cartItems;
     },
   },
 });
