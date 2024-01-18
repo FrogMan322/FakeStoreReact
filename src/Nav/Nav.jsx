@@ -20,7 +20,12 @@ function Nav() {
     dispatch(storeItemsActions.slideCart(value));
   }
   return (
-    <div className={classes.container}>
+    <motion.div
+      initial={{ y: "-100%" }}
+      animate={{ y: 0 }}
+      transition={{ type: "Tween" }}
+      className={classes.container}
+    >
       <h1 className={classes["store__name"]}>
         <NavLink
           to={"/"}
@@ -66,7 +71,7 @@ function Nav() {
         <i className="bi bi-cart"></i>
         <p className={classes["cart__number"]}>{totalQuantity}</p>
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
 

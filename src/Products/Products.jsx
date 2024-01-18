@@ -27,15 +27,13 @@ function Products(props) {
   const { image, data, id, title, price, value } = props;
   return (
     <motion.div
-      whileHover={{
-        scale: 1.05,
-        rotate: 5,
-        margin: 30,
-      }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.2, duration: 0.5 }}
       key={value}
       className={classes.wraper}
     >
-      <div key={data} className={classes["product__card"]}>
+      <motion.div key={data} className={classes["product__card"]}>
         <img
           src={image}
           alt=""
@@ -66,7 +64,7 @@ function Products(props) {
             <Link to={`/details/${id}`}>Products Details</Link>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }

@@ -44,8 +44,9 @@ function Cart() {
   return (
     <motion.div
       className={classes[`cart__container`]}
+      initial={{ x: "-100%" }}
       animate={{ x: `${showCart ? 0 : -100}%` }}
-      transition={{ ease: "linear", duration: 0.3 }}
+      transition={{ type: "Tween", duration: 0.2 }}
     >
       <h1 className={classes.total}>
         Total Value: {`$${totalMoney.toFixed(2)}`}

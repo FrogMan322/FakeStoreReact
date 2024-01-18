@@ -20,7 +20,7 @@
   position: absolute;
   z-index: 150;
   gap: 15px;
-  transform: translate(-100%);
+  transform: translateX(-100%);
 }
 
 .modal__display {
