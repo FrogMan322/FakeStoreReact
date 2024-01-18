@@ -114,7 +114,7 @@ const storeItems = createSlice({
     },
     deleteCheckoutItem(state, action) {
       // Zavrsi kasnije brisanje itama iz checkout
-      const itemId = action.id;
+      const itemId = action.payload;
       const idx = state.checkout.findIndex((item) => item.id === itemId);
       state.checkout.splice(idx, 1);
     },

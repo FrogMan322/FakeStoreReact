@@ -72,6 +72,7 @@ function Cart() {
           onClick={() => {
             dispatch(storeItemsActions.getCheckoutItems());
             dispatch(storeItemsActions.cleareCart());
+            dispatch(storeItemsActions.slideCart(false));
             navigate("/checkout");
           }}
         >

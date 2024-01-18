@@ -60,7 +60,7 @@ const Button = styled(motion.button)`
 `;
 function Checkout() {
   const checkoutItems = useSelector((props) => props.checkout);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const totalPrice = checkoutItems
     .map((item) => item.price)
     .reduce((cv, ac) => {
@@ -76,7 +76,7 @@ function Checkout() {
       <Wrapper>
         <ActionsContainer>
           <Button>complete checkout</Button>
-          <h1>total price: {totalPrice * totalQuantity}$</h1>
+          <h1>total price: {(totalPrice * totalQuantity).toFixed(2)}$</h1>
           <h1>
             total items:
             {totalQuantity}
