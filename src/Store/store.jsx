@@ -4,6 +4,7 @@ const initialState = {
   quantity: 0,
   cartItems: [],
   checkout: [],
+  checkoutFinal: { userData: {}, items: [] },
   totalAmount: 0,
   isVisible: false,
   notification: null,

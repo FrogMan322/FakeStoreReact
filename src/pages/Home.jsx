@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import useHttp from "../customHook/useHttp";
 import ImageBackdrop from "../ImageModal/ImageModal";
 import { AnimatePresence } from "framer-motion";
+
 function HomePage() {
   const modalIsVisible = useSelector((state) => state.modalVisible);
   const filterValue = useSelector((state) => state.searchValue);
@@ -37,13 +38,14 @@ function HomePage() {
                 }
               })
               .map((obj) => {
+                const { title, price, image, id } = obj;
                 return (
                   <Products
-                    title={obj.title}
-                    price={obj.price}
-                    image={obj.image}
-                    key={obj.id}
-                    id={obj.id}
+                    title={title}
+                    price={price}
+                    image={image}
+                    key={id}
+                    id={id}
                   />
                 );
               })}
