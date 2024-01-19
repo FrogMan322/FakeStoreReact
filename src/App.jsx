@@ -6,7 +6,7 @@ import Details, { getProduct } from "./pages/Details";
 import Checkout from "./pages/Checkout";
 import SingUp from "./pages/SingIn/SingUp";
 import ErrorPage from "./pages/ErrorPage";
-
+import CheckOutForm from "./pages/CheckOutForm";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,7 +15,14 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "details/:prodId", element: <Details />, loader: getProduct },
-      { path: "checkout", element: <Checkout /> },
+      {
+        path: "checkout",
+        element: <Checkout />,
+      },
+      {
+        path: "/order-data",
+        element: <CheckOutForm />,
+      },
       { path: "signup", element: <SingUp /> },
     ],
   },
