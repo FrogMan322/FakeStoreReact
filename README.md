@@ -1,4 +1,4 @@
-# Fake Store Api
+# Fake Store Application
 
 Bulding fake store api via REACT, and using react-redux toolkit for sharing data among components
 
