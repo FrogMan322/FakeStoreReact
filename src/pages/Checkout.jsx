@@ -50,8 +50,7 @@ function Checkout() {
           </ActionsContainer>
         )}
 
-        {checkoutItems.map((items) => {
-          const { id, price, quantity, title, image } = items;
+        {checkoutItems.map(({ id, price, quantity, title, image }) => {
           return (
             <ItemContainer
               initial={{ x: "-150%" }}

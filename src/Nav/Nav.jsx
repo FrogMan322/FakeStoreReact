@@ -69,7 +69,15 @@ function Nav() {
         className={classes["cart"]}
       >
         <i className="bi bi-cart"></i>
-        <p className={classes["cart__number"]}>{totalQuantity}</p>
+        <motion.p
+          key={totalQuantity}
+          initial={{ scale: 1 }}
+          animate={{ scale: [1, 1.3, 1] }}
+          transition={{ duration: 0.2 }}
+          className={classes["cart__number"]}
+        >
+          {totalQuantity}
+        </motion.p>
       </motion.div>
     </motion.div>
   );
