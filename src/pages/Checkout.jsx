@@ -12,8 +12,18 @@ import {
   Price,
   ActionsContainer,
   Button,
+  ContainerNoItems,
+  WrapperNoItems,
 } from "./Checkout.styled";
-
+function NoItems() {
+  return (
+    <ContainerNoItems>
+      <WrapperNoItems>
+        <h1>You Have No items In Checkout</h1>
+      </WrapperNoItems>
+    </ContainerNoItems>
+  );
+}
 function Checkout() {
   const checkoutItems = useSelector((props) => props.checkout);
 
@@ -50,36 +60,40 @@ function Checkout() {
           </ActionsContainer>
         )}
 
-        {checkoutItems.map(({ id, price, quantity, title, image }) => {
-          return (
-            <ItemContainer
-              initial={{ x: "-150%" }}
-              animate={{ x: 0 }}
-              transition={{
-                delay: 0.3,
-                duration: 0.4,
-                type: "spring",
-                stiffness: 120,
-              }}
-              key={id}
-            >
-              <Img src={image} alt="" />
-              <Description>{title}</Description>
-              <Price>Price:{price * quantity}</Price>
-              <Quantity>Quantity:{quantity}</Quantity>
-              <Button
-                whileHover={{
-                  scale: 1.1,
+        {checkoutItems.length === 0 ? (
+          <NoItems></NoItems>
+        ) : (
+          checkoutItems.map(({ id, price, quantity, title, image }) => {
+            return (
+              <ItemContainer
+                initial={{ x: "-150%" }}
+                animate={{ x: 0 }}
+                transition={{
+                  delay: 0.3,
+                  duration: 0.4,
+                  type: "spring",
+                  stiffness: 120,
                 }}
-                onClick={() => {
-                  dispatch(storeItemsActions.deleteCheckoutItem(id));
-                }}
+                key={id}
               >
-                Delete item
-              </Button>
-            </ItemContainer>
-          );
-        })}
+                <Img src={image} alt="" />
+                <Description>{title}</Description>
+                <Price>Price:${price * quantity}</Price>
+                <Quantity>Quantity:{quantity}</Quantity>
+                <Button
+                  whileHover={{
+                    scale: 1.1,
+                  }}
+                  onClick={() => {
+                    dispatch(storeItemsActions.deleteCheckoutItem(id));
+                  }}
+                >
+                  Delete item
+                </Button>
+              </ItemContainer>
+            );
+          })
+        )}
       </Wrapper>
     </Container>
   );

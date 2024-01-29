@@ -47,16 +47,7 @@ function Nav() {
           Checkout
         </NavLink>
       </h1>
-      <h1 className={classes["store__name"]}>
-        <NavLink
-          to={"/signup"}
-          className={({ isActive }) => {
-            return isActive ? classes.isVisiting : undefined;
-          }}
-        >
-          SignUp
-        </NavLink>
-      </h1>
+
       <motion.div
         whileHover={{
           scale: 1.4,

@@ -88,7 +88,26 @@ const Button = styled(motion.button)`
     color: white;
   }
 `;
-
+const ContainerNoItems = styled.div`
+  width: 100%;
+  height: calc(100vh - 7rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const WrapperNoItems = styled.div`
+  border-radius: 10%;
+  border: 1px solid black;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  font-family: "Roboto";
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+`;
 export {
   Container,
   Wrapper,
@@ -99,4 +118,6 @@ export {
   Price,
   ActionsContainer,
   Button,
+  ContainerNoItems,
+  WrapperNoItems,
 };
