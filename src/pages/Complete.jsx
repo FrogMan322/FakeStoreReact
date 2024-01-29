@@ -9,9 +9,9 @@ const Container = styled.div`
 `;
 const Wrapper = styled.div`
   border-radius: 10%;
-  border: 1px solid black;
-  width: 300px;
-  height: 300px;
+  border: 3px solid orange;
+  width: 500px;
+  height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,6 +19,9 @@ const Wrapper = styled.div`
   gap: 30px;
   font-family: "Roboto";
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  font-size: 2rem;
+  background-color: #e08c0d75;
+  font-weight: bold;
 `;
 function Complete() {
   const data = useSelector((data) => data.checkoutFinal);
