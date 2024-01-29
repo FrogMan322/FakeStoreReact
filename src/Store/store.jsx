@@ -4,7 +4,7 @@ const initialState = {
   quantity: 0,
   cartItems: [],
   checkout: [],
-  checkoutFinal: { userData: {}, items: [] },
+  checkoutFinal: {},
   totalAmount: 0,
   isVisible: false,
   notification: null,
@@ -114,10 +114,13 @@ const storeItems = createSlice({
       state.checkout = state.cartItems;
     },
     deleteCheckoutItem(state, action) {
-      // Zavrsi kasnije brisanje itama iz checkout
       const itemId = action.payload;
       const idx = state.checkout.findIndex((item) => item.id === itemId);
       state.checkout.splice(idx, 1);
+    },
+    checkoutComplete(state, action) {
+      state.checkout = [];
+      state.checkoutFinal = action.payload;
     },
   },
 });

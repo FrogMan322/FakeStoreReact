@@ -7,6 +7,7 @@ import Checkout from "./pages/Checkout";
 import SingUp from "./pages/SingIn/SingUp";
 import ErrorPage from "./pages/ErrorPage";
 import CheckOutForm from "./pages/CheckOutForm";
+import Complete from "./pages/Complete";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,10 +21,11 @@ const router = createBrowserRouter([
         element: <Checkout />,
       },
       {
-        path: "/order-data",
+        path: "order-data",
         element: <CheckOutForm />,
       },
       { path: "signup", element: <SingUp /> },
+      { path: "complete", element: <Complete /> },
     ],
   },
 ]);
