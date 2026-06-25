@@ -4,5 +4,5 @@ Bulding fake store api via REACT, and using react-redux toolkit for sharing data
 
 ## How to view the site
 
-1. First type in console "npm install" to install dependencies
-2. Second type "npm start" to run the dev server
+1. First type in console "npm install" to install dependencies.
+2. Second type "npm start" to run the dev server.
